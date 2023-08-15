@@ -9,9 +9,9 @@ font-family: 'Zen Dots', cursive;
 */
 
 body {
-    background-color: rgb(230, 230, 230); 
-    font-family: Helvetica, sans-serif;
-}
+    background-color: #ecf0f1; 
+    font-family: 'Electrolize', sans-serif;
+  }
 
 footer{
     font-size: small;
@@ -62,9 +62,8 @@ footer{
   }
 
   header {
-    font-family: 'Press Start 2P', cursive;
-    background-color: black;
-    color: white;
+    font-family: 'Architects Daughter', cursive;
+    color: #222f3e;
     padding: 15px;
     text-align: center;
   }
@@ -72,6 +71,7 @@ footer{
 
 .page404 {
   min-height: 100vh;
+  line-height: 1.6;
   font-family: 'Press Start 2P', cursive;
   background-image:radial-gradient(#1b1f20, #636e72);
   color: #dcdde1;
