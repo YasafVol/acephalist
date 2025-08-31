@@ -9,11 +9,11 @@ font-family: 'Zen Dots', cursive;
 */
 
 body {
-    background-color: #ecf0f1; 
-    font-family: 'Electrolize', sans-serif;
-  }
+    background-color: #ecf0f1;
+    font-family: "Electrolize", sans-serif;
+}
 
-footer{
+footer {
     font-size: small;
     text-align: center;
 }
@@ -21,93 +21,89 @@ footer{
 .navbar {
     height: 65px;
     box-shadow: 0 10px 50px hsl(0, 0%, 90%);
-  }
-  
-  .container {
+}
+
+.container {
     max-width: 98%;
     margin: 0 auto;
-  }
-  
-  .logo a {
+}
+
+.logo a {
     float: left;
     padding: 20px;
     color: hsl(0, 0%, 40%);
-  }
-  
-  .navbarMenu {
+}
+
+.navbarMenu {
     float: right;
-    
-  }
-  
-  .navbarMenu li {
+}
+
+.navbarMenu li {
     list-style: none;
     display: inline-block;
-  }
-  
-  a {
-    text-decoration: none;
-  }
+}
 
-  .navbarMenu li a {
+a {
+    text-decoration: none;
+}
+
+.navbarMenu li a {
     padding: 20px 15px;
     color: hsl(0, 0%, 40%);
     float: left;
-    transition: color .3s ease-in-out;
-  }
-  
-  .navbarMenu li a:hover {
-    color: hsl(0, 0%, 00%);
-    text-decoration: underline; 
-    transition: color .5s ease-in-out; 
-  }
+    transition: color 0.3s ease-in-out;
+}
 
-  header {
-    font-family: 'Architects Daughter', cursive;
+.navbarMenu li a:hover {
+    color: hsl(0, 0%, 00%);
+    text-decoration: underline;
+    transition: color 0.5s ease-in-out;
+}
+
+header {
+    font-family: "Architects Daughter", cursive;
     color: #222f3e;
     padding: 15px;
     text-align: center;
-  }
-
-
-.page404 {
-  min-height: 100vh;
-  line-height: 1.6;
-  font-family: 'Press Start 2P', cursive;
-  background-image:radial-gradient(#1b1f20, #636e72);
-  color: #dcdde1;
-  
-} 
-.div404{
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
 }
 
-.h1_404{
-  font-size: 200px;
-  margin: 0;
-  font-weight: 900;
-  letter-spacing: 20px;
-  background: url(./images/portal.png) center no-repeat;
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
+.page404 {
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: "Press Start 2P", cursive;
+    background-image: radial-gradient(#1b1f20, #636e72);
+    color: #dcdde1;
+}
+.div404 {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.h1_404 {
+    font-size: 200px;
+    margin: 0;
+    font-weight: 900;
+    letter-spacing: 20px;
+    background: url(./images/portal.png) center no-repeat;
+    -webkit-text-fill-color: transparent;
 }
 
 .a_404 {
-  text-decoration: none;
-  text-align: center;
-  background: #fbc531;
-  color: #2f3640;
-  padding: 12px 24px;
-  display: inline-block;
-  border-radius: 25px;
-  font-size: 16px;
-  text-transform: uppercase;
-  transition: 0.4s;
+    text-decoration: none;
+    text-align: center;
+    background: #fbc531;
+    color: #2f3640;
+    padding: 12px 24px;
+    display: inline-block;
+    border-radius: 25px;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: 0.4s;
 }
 
-.a_404:hover{
-  background: #e1b12c;
+.a_404:hover {
+    background: #e1b12c;
 }
