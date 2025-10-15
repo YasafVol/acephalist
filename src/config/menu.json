@@ -40,6 +40,10 @@
         {
           "name": "404 Page",
           "url": "/404"
+        },
+        {
+          "name": "Superpowers",
+          "url": "/superpowers"
         }
       ]
     }
