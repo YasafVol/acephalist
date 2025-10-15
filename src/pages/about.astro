@@ -1,5 +1,5 @@
 ---
-import ImageMod from "@/components/ImageMod.astro";
+import BeforeAfter from "@/layouts/components/BeforeAfter.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
@@ -20,18 +20,14 @@ const { title, description, meta_title, image } = about.data;
     <div class="container">
       <div class="row justify-center">
         <div class="text-center md:col-10 lg:col-7">
-          {
-            image && (
-              <ImageMod
-                class="mx-auto mb-6 rounded-lg"
-                src={image}
-                width={200}
-                height={200}
-                alt={title}
-                format="webp"
-              />
-            )
-          }
+          <BeforeAfter
+            class="mx-auto mb-6"
+            beforeSrc="/images/yasafVolDrawn.png"
+            afterSrc="/images/yasafVolDnD.png"
+            alt={title}
+            width={400}
+            height={300}
+          />
           <h2 set:html={markdownify(title)} class="h3 mb-6" />
           <div class="content">
             <Content />
