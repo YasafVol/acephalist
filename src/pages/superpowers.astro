@@ -1,6 +1,5 @@
 ---
 import Base from "@/layouts/Base.astro";
-import stylesHref from "/css/pm-superpowers.css?url";
 import scriptSrc from "/js/pm-superpowers.js?url";
 
 const pageTitle = "PM Superpowers • Yasaf";
@@ -9,10 +8,6 @@ const pageDescription =
 ---
 
 <Base title={pageTitle} meta_title={pageTitle} description={pageDescription}>
-  <head>
-    <script src={scriptSrc} defer></script>
-    <link rel="stylesheet" href={stylesHref} />
-  </head>
 
   <div class="wrap">
     <h1>My PM Superpowers</h1>

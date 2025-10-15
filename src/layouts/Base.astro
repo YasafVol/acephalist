@@ -126,6 +126,11 @@ const { title, meta_title, description, image, noindex, canonical } =
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
 
+    <!-- conditional CSS for superpowers page -->
+    {Astro.url.pathname === '/superpowers' && (
+      <link rel="stylesheet" href="/css/pm-superpowers.css" />
+    )}
+
     <!-- og-title -->
     <meta
       property="og:title"

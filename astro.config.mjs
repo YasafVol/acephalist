@@ -15,14 +15,7 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   image: { service: sharp() },
-  vite: { 
-    plugins: [tailwindcss()],
-    build: {
-      rollupOptions: {
-        external: ["/css/pm-superpowers.css?transform-only"]
-      }
-    }
-  },
+  vite: { plugins: [tailwindcss()] },
   integrations: [
     react(),
     sitemap(),
