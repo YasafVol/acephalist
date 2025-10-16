@@ -65,11 +65,6 @@ const isValidAfterPath = images[afterPath] ? true : false;
       <!-- Slider -->
       <div class="before-after-slider" id="slider">
         <div class="slider-line"></div>
-        <div class="slider-handle">
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M7 7L3 10L7 13M13 7L17 10L13 13" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
       </div>
       
     </div>
@@ -111,9 +106,9 @@ const isValidAfterPath = images[afterPath] ? true : false;
     position: absolute;
     top: 0;
     left: 50%;
-    width: 4px;
+    width: 2px;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(128, 128, 128, 0.3);
     cursor: ew-resize;
     z-index: 3;
     transform: translateX(-50%);
@@ -125,43 +120,10 @@ const isValidAfterPath = images[afterPath] ? true : false;
     height: 100%;
     background: linear-gradient(to bottom, 
       transparent 0%, 
-      rgba(255, 255, 255, 0.6) 10%, 
-      rgba(255, 255, 255, 0.6) 90%, 
+      rgba(128, 128, 128, 0.2) 10%, 
+      rgba(128, 128, 128, 0.2) 90%, 
       transparent 100%
     );
-  }
-  
-  .slider-handle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 2px solid white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(4px);
-  }
-  
-  .slider-handle svg {
-    width: 20px;
-    height: 20px;
-  }
-  
-  @media (max-width: 640px) {
-    .slider-handle {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .slider-handle svg {
-      width: 16px;
-      height: 16px;
-    }
   }
 </style>
 
