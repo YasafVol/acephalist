@@ -7,3 +7,5 @@ draft: false
 ---
 
 I am Yasaf
+
+> It's what I do, I drink, and I know things. - Tyrion Lannister
