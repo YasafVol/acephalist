@@ -1,66 +1,46 @@
 ---
-import BlogCard from "@/components/BlogCard.astro";
-import Pagination from "@/components/Pagination.astro";
-import config from "@/config/config.json";
-import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
-import { getAllTaxonomy, getTaxonomy } from "@/lib/taxonomyParser.astro";
-import { sortByDate } from "@/lib/utils/sortFunctions";
-import PageHeader from "@/partials/PageHeader.astro";
-import PostSidebar from "@/partials/PostSidebar.astro";
-import type { CollectionEntry } from "astro:content";
-import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import PageLayout from "@layouts/PageLayout.astro";
+import TopLayout from "@layouts/TopLayout.astro";
+import BottomLayout from "@layouts/BottomLayout.astro";
+import SearchCollection from "@components/SearchCollection";
+import { BLOG } from "@consts";
 
-const BLOG_FOLDER = "blog";
+const posts = (await getCollection("blog"))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-const postIndex = (await getEntry(
-  BLOG_FOLDER,
-  "-index"
-)) as CollectionEntry<"blog">;
-const posts = await getSinglePage(BLOG_FOLDER);
-const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
-const categories = await getTaxonomy(BLOG_FOLDER, "categories");
-const tags = await getTaxonomy(BLOG_FOLDER, "tags");
-const sortedPosts = sortByDate(posts);
-const totalPages: number = Math.ceil(posts.length / config.settings.pagination);
-const currentPosts = sortedPosts.slice(0, config.settings.pagination);
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort(
+  (a, b) => a.localeCompare(b),
+);
+
+const estimated_initial_size =
+  28 + posts.length * 158 + (posts.length - 1) * 12;
 ---
 
-<Base
-  title={postIndex.data.title}
-  meta_title={postIndex.data.meta_title}
-  image={postIndex.data.image}
-  description={postIndex.data.description}
->
-  <PageHeader title={postIndex?.data.title} />
-  <section class="section">
-    <div class="container">
-      <div class="row gx-5">
-        <!-- blog posts -->
-        <div class="lg:col-8">
-          <div class="row">
-            {
-              currentPosts.map((post) => (
-                <div class="mb-14 md:col-6">
-                  <BlogCard data={post} />
-                </div>
-              ))
-            }
-          </div>
-          <Pagination
-            section={BLOG_FOLDER}
-            currentPage={1}
-            totalPages={totalPages}
-          />
-        </div>
-
-        <!-- sidebar -->
-        <PostSidebar
-          categories={categories}
-          tags={tags}
-          allCategories={allCategories}
-        />
+<PageLayout title={BLOG.TITLE} description={BLOG.DESCRIPTION}>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        {BLOG.TITLE}
+      </h1>
+      <div class="mt-1">
+        {BLOG.DESCRIPTION}
       </div>
     </div>
-  </section>
-</Base>
+  </TopLayout>
+  <BottomLayout>
+    <div
+      id="search-collection-wrapper"
+      class="animate"
+      style={{ minHeight: `${estimated_initial_size}px` }}
+    >
+      <SearchCollection
+        client:load
+        entry_name={"posts"}
+        tags={tags}
+        data={posts}
+      />
+    </div>
+  </BottomLayout>
+</PageLayout>

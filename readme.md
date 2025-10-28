@@ -1,132 +1,89 @@
-<h1 align=center>Astro + Tailwind CSS + TypeScript Starter and Boilerplate</h1>
+![Astro Sphere Lighthouse Score](_astrosphere.jpg)
 
-<p align=center>Astroplate is a free starter template built with Astro, TailwindCSS & TypeScript, providing everything you need to jumpstart your Astro project and save valuable time.</p>
+Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
 
-<p align=center>Made with ♥ by <a href="https://zeon.studio/">Zeon Studio</a></p>
+It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
 
-<p align=center> If you find this project useful, please give it a ⭐ to show your support. </p>
+## 🚀 Deploy your own
 
-<h2 align="center"> <a target="_blank" href="https://astroplate.netlify.app/" rel="nofollow">👀 Demo</a> | <a target="_blank" href="https://astroplate-multilang.netlify.app/" rel="nofollow">👀 Demo Multilang</a> | <a  target="_blank" href="https://pagespeed.web.dev/analysis/https-astroplate-netlify-app/yzx3foum3w?form_factor=desktop">Page Speed (100%)🚀</a>
-</h2>
+[![Deploy with Vercel](_deploy_vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/markhorn-dev/astro-sphere)  [![Deploy with Netlify](_deploy_netlify.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/markhorn-dev/astro-sphere)
 
-<p align=center>
-  <a href="https://github.com/withastro/astro/releases/tag/astro%405.7.8">
-    <img src="https://img.shields.io/static/v1?label=ASTRO&message=5.7&color=000&logo=astro"  alt="Astro Version 5.7"/>
-  </a>
+## 📋 Features
 
-  <a href="https://github.com/zeon-studio/astroplate/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/zeon-studio/astroplate" alt="license"></a>
+- ✅ 100/100 Lighthouse performance
+- ✅ Responsive
+- ✅ Accessible
+- ✅ SEO-friendly
+- ✅ Typesafe
+- ✅ Minimal style
+- ✅ Light/Dark Theme
+- ✅ Animated UI
+- ✅ Tailwind styling
+- ✅ Auto generated sitemap
+- ✅ Auto generated RSS Feed
+- ✅ Markdown support
+- ✅ MDX Support (components in your markdown)
+- ✅ Searchable content (posts and projects)
+- ✅ Code Blocks - copy to clipboard
 
-  <img src="https://img.shields.io/github/languages/code-size/zeon-studio/astroplate" alt="code size">
+## 💯 Lighthouse score
+![Astro Sphere Lighthouse Score](_lighthouse.png)
 
-  <a href="https://github.com/zeon-studio/astroplate/graphs/contributors">
-    <img src="https://img.shields.io/github/contributors/zeon-studio/astroplate" alt="contributors"></a>
-</p>
+## 🕊️ Lightweight
+All pages under 100kb (including fonts)
 
-## 📌 Key Features
+## ⚡︎ Fast
+Rendered in ~40ms on localhost
 
-- 👥 Multi-Authors
-- 🌐 Multilingual
-- 🎯 Similar Posts Suggestion
-- 🔍 Search Functionality
-- 🌑 Dark Mode
-- 🏷️ Tags & Categories
-- 🔗 Netlify setting pre-configured
-- 📞 Support contact form
-- 📱 Fully responsive
-- 📝 Write and update content in Markdown / MDX
-- 📎 Google Tag Manager
-- 💬 Disqus Comment
-- 🔳 Syntax Highlighting
+## 📄 Configuration
 
-### 📄 15+ Pre-designed Pages
+The blog posts on the demo serve as the documentation and configuration.
 
-- 🏠 Homepage
-- 👤 About
-- 📞 Contact
-- 👥 Authors
-- 👤 Author Single
-- 📝 Blog
-- 📝 Blog Single
-- 🚫 Custom 404
-- 💡 Elements
-- 📄 Privacy Policy
-- 🏷️ Tags
-- 🏷️ Tag Single
-- 🗂️ Categories
-- 🗂️ Category Single
-- 🔍 Search
+## 💻 Commands
 
-## 🔗 Integrations
+All commands are run from the root of the project, from a terminal:
 
-- astro/react
-- astro/sitemap
-- astro/tailwind
+Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, etc
 
-## 🚀 Getting Started
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `npm install`             | Installs dependencies                            |
+| `npm run dev`             | Starts local dev server at `localhost:4321`      |
+| `npm run dev:network`     | Starts dev server on local network               |
+| `npm run sync`            | Generates TypeScript types for all Astro modules.|
+| `npm run build`           | Build your production site to `./dist/`          |
+| `npm run preview`         | Preview your build locally, before deploying     |
+| `npm run preview:network` | Starts preview server on local network           |
+| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run lint`            | Run ESLint                                       |
+| `npm run lint:fix`        | Auto-fix ESLint issues                           |
 
-### 📦 Dependencies
+## 🗺️ Roadmap
 
-- astro v5.7+
-- node v20.10+
-- yarn v1.22+
-- tailwind v4+
+A few features I plan to implement
+- ⬜ Article Pages - Table of Contents
+- ⬜ Article Pages - Share on social media
 
-### 👉 Install Dependencies
+## ✨ Acknowledgement
 
-```bash
-yarn install
-```
+Theme inspired by [Paco Coursey](https://paco.me/), [Lee Robinson](https://leerob.io/) and [Hayden Bleasel](https://www.haydenbleasel.com/)
 
-### 👉 Development Command
 
-```bash
-yarn run dev
-```
+## 🏛️ License
 
-### 👉 Build Command
+MIT
 
-```bash
-yarn run build
-```
 
-### 👉 Build and Run With Docker
+# 1.0.1 Update
 
-```bash
-docker build -t astroplate .
-# or
-# docker --build-arg INSTALLER=npm build -t astroplate .
-# or
-# docker --build-arg INSTALLER=pnpm build -t astroplate .
+Added ability to run dev and preview on local network.
+added npm run dev:network
+added npm run preview:network
 
-docker run -p 3000:80 astroplate
-# or
-# docker run --rm -p 3000:80 astroplate
-```
+Added slightly more particle density in both light and dark mode.
 
-To access the shell within the container:
+Added subtle dark mode star and meteor animations.
 
-```bash
-docker run -it --rm astroplate ash
-```
+Removed eslint config
 
-<!-- reporting issue -->
-
-## 🐞 Reporting Issues
-
-We use GitHub Issues as the official bug tracker for this Template. Please Search [existing issues](https://github.com/zeon-studio/astroplate/issues). It’s possible someone has already reported the same problem.
-If your problem or idea has not been addressed yet, feel free to [open a new issue](https://github.com/zeon-studio/astroplate/issues).
-
-<!-- licence -->
-
-## 📝 License
-
-Copyright (c) 2023 - Present, Designed & Developed by [Zeon Studio](https://zeon.studio/)
-
-**Code License:** Released under the [MIT](https://github.com/zeon-studio/astroplate/blob/main/LICENSE) license.
-
-**Image license:** The images are only for demonstration purposes. They have their license, we don't have permission to share those images.
-
-## 💻 Need Custom Development Services?
-
-If you need a custom theme, theme customization, or complete website development services from scratch you can [Hire Us](https://zeon.studio/).
