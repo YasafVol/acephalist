@@ -193,6 +193,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"07-pm-superpowers/index.md": {
+	id: "07-pm-superpowers/index.md";
+  slug: "07-pm-superpowers";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 "legal": {
 "privacy.md": {
@@ -235,6 +242,13 @@ declare module 'astro:content' {
 "project-4/index.md": {
 	id: "project-4/index.md";
   slug: "project-4";
+  body: string;
+  collection: "projects";
+  data: InferEntrySchema<"projects">
+} & { render(): Render[".md"] };
+"project-5/index.md": {
+	id: "project-5/index.md";
+  slug: "project-5";
   body: string;
   collection: "projects";
   data: InferEntrySchema<"projects">
