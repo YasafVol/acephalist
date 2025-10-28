@@ -1,0 +1,67 @@
+---
+interface Props {
+  beforeSrc: string;
+  afterSrc: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  class?: string;
+  labelText?: string;
+}
+
+const {
+  beforeSrc,
+  afterSrc,
+  alt,
+  width,
+  height,
+  class: className,
+  labelText = "Control slider to compare two images.",
+} = Astro.props;
+
+const containerStyles = [width ? `max-width: ${width}px` : ""].filter(Boolean).join("; ");
+---
+
+<div class={`image-compare ${className ?? ""}`} style={containerStyles}>
+  <!-- Include the image compare web component from CDN -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@cloudfour/image-compare@latest/dist/index.min.js"></script>
+
+  <image-compare label-text={labelText} class="image-compare__slider">
+    <img
+      slot="image-1"
+      src={beforeSrc}
+      alt={`${alt} (before)`}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+    />
+    <img
+      slot="image-2"
+      src={afterSrc}
+      alt={`${alt} (after)`}
+      width={width}
+      height={height}
+      loading="lazy"
+      decoding="async"
+    />
+  </image-compare>
+</div>
+
+<style>
+  .image-compare {
+    display: block;
+    margin-inline: auto;
+  }
+
+  .image-compare__slider {
+    display: block;
+    width: 100%;
+  }
+
+  .image-compare__slider img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+</style>
