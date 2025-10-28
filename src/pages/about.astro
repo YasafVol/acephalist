@@ -1,5 +1,5 @@
 ---
-import BeforeAfter from "@/layouts/components/BeforeAfter.astro";
+import ImageCompare from "@/layouts/components/ImageCompare.astro";
 import Base from "@/layouts/Base.astro";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
@@ -20,7 +20,7 @@ const { title, description, meta_title, image } = about.data;
     <div class="container">
       <div class="row justify-center">
         <div class="text-center md:col-10 lg:col-7">
-          <BeforeAfter
+          <ImageCompare
             class="mx-auto mb-6"
             beforeSrc="/images/yasafVolDrawn.png"
             afterSrc="/images/yasafVolDnD.png"
