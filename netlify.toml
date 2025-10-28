@@ -8,9 +8,6 @@ NODE_VERSION = "20"
 [build.functions]
 node_bundler = "esbuild"
 
-[functions]
-included_files = ["dist/**/*"]
-
 [dev]
 command = "npm run dev"
 framework = "astro"
@@ -18,4 +15,3 @@ framework = "astro"
 [functions]
 included_files = ["dist/**/*"]
 node_bundler = "esbuild"
-```
