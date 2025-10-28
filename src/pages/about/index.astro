@@ -1,0 +1,84 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import ImageCompare from "@components/ImageCompare.astro"
+import { ABOUT } from "@consts"
+---
+
+<PageLayout title={ABOUT.TITLE} description={ABOUT.DESCRIPTION}>
+  <div class="relative bg-white dark:bg-black">
+    <div class="mx-auto max-w-screen-sm p-5 space-y-12 pb-16">
+
+      <!-- Hero Section with Image Compare -->
+      <section class="animate space-y-8">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-black dark:text-white">
+          About Me
+        </h1>
+
+        <p class="text-lg md:text-xl text-black/75 dark:text-white/75 leading-relaxed">
+          Hey, I am Yasaf! A software engineer, designer, and creative thinker.
+        </p>
+
+        <!-- Image Comparison Component -->
+        <div class="my-12">
+          <ImageCompare
+            beforeSrc="/images/yasafVolDnD.png"
+            afterSrc="/images/yasafVolDrawn.png"
+            alt="Yasaf - D&D character vs drawn version"
+            width={500}
+            labelText="Drag slider to compare my D&D character vs drawn version"
+          />
+        </div>
+
+        <!-- About Content -->
+        <article class="prose prose-lg max-w-none dark:prose-invert">
+          <p>I am a <strong><i>software engineer</i></strong>, <strong><i>ui/ux designer</i></strong>, <strong><i>product planner</i></strong>, <strong><i>mentor</i></strong>, <strong><i>student</i></strong>, <strong><i>minimalist</i></strong>, <strong><i>eternal optimist</i></strong>, <strong><i>crypto enthusiast</i></strong> and <strong><i>sarcasm connoisseur</i></strong>.</p>
+
+          <p>I love to both build and break things. I am motivated by challenging projects with self-guided research and dynamic problem solving. My true passion is crafting creative front end designs with unique takes on color, typography and motion.</p>
+
+          <p>During my career</p>
+
+          <p>I have built products ranging from marketing and ecommerce websites to complex enterprise apps with focus on delivering fast, elegant code along with delightful user interfaces.</p>
+
+          <p>Now</p>
+
+          <p>I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.</p>
+
+          <blockquote>
+            <p>"It's what I do, I drink, and I know things." - Tyrion Lannister</p>
+          </blockquote>
+        </article>
+      </section>
+
+    </div>
+  </div>
+</PageLayout>
+
+<style>
+  .prose {
+    @apply text-black dark:text-white leading-relaxed;
+  }
+
+  .prose h1 {
+    @apply text-2xl font-bold mt-8 mb-4;
+  }
+
+  .prose h2 {
+    @apply text-xl font-semibold mt-6 mb-3;
+  }
+
+  .prose p {
+    @apply mb-4;
+  }
+
+  .prose strong {
+    @apply font-semibold;
+  }
+
+  .prose em {
+    @apply italic;
+  }
+
+  .prose blockquote {
+    @apply border-l-4 border-black/25 dark:border-white/25 pl-4 italic my-4;
+  }
+</style>

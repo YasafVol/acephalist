@@ -6,7 +6,7 @@ import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
-import ImageCompare from "@components/ImageCompare.astro"
+
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -86,15 +86,6 @@ const stack = [
           <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'>
             Yasaf
           </p>
-          <div class="animated my-8">
-            <ImageCompare
-              beforeSrc="/images/yasafVolDnD.png"
-              afterSrc="/images/yasafVolDrawn.png"
-              alt="Yasaf - D&D character vs drawn version"
-              width={400}
-              labelText="Drag slider to compare D&D character vs drawn version"
-            />
-          </div>
           <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
             Currently designing products for humans.
           </p>

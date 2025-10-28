@@ -20,6 +20,12 @@ export const BLOG: Page = {
   DESCRIPTION: "Writing on topics I am passionate about.",
 };
 
+// About Page
+export const ABOUT: Page = {
+  TITLE: "About",
+  DESCRIPTION: "Learn more about me and my work.",
+};
+
 // Projects Page
 export const PROJECTS: Page = {
   TITLE: "Projects",
@@ -37,6 +43,10 @@ export const LINKS: Links = [
   {
     TEXT: "Home",
     HREF: "/",
+  },
+  {
+    TEXT: "About",
+    HREF: "/about",
   },
   {
     TEXT: "Work",
