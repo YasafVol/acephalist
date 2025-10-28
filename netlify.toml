@@ -5,13 +5,6 @@ command = "npm run build"
 [build.environment]
 NODE_VERSION = "20"
 
-[build.functions]
-node_bundler = "esbuild"
-
-[functions]
-included_files = ["dist/**/*"]
-node_bundler = "esbuild"
-
 [dev]
 command = "npm run dev"
 framework = "astro"
