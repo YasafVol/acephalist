@@ -13,8 +13,9 @@ tags:
 <link rel="stylesheet" href="/css/pm-superpowers.css">
 
 <div class="wrap">
+  <h1>My PM Superpowers</h1>
   <p class="hint">
-    Default shows overall aptitude. Toggle a role to see what that job added.
+    Default shows overall aptitude. Toggle a role to see what that job added. Bars cap at 10.
   </p>
 
   <div class="controls" role="radiogroup" aria-label="Select view">
