@@ -13,9 +13,8 @@ tags:
 <link rel="stylesheet" href="/css/pm-superpowers.css">
 
 <div class="wrap">
-  <h1>My PM Superpowers</h1>
   <p class="hint">
-    Default shows overall aptitude. Toggle a role to see what that job added. Bars cap at 10.
+    Default shows overall aptitude. Toggle a role to see what that job added.
   </p>
 
   <div class="controls" role="radiogroup" aria-label="Select view">
@@ -26,9 +25,10 @@ tags:
     <!-- legend injected by script.js -->
   </div>
 
-  <div class="grid" id="chart" aria-describedby="desc">
+  <div class="pm-grid" id="chart" aria-describedby="desc">
     <!-- chart rows injected by script.js -->
   </div>
+  
   <p id="desc" class="hint">
     Each row is a skill. Colored segments are contributions from roles. Numbers are totals, clamped to a 10-point cap.
   </p>

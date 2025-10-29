@@ -35,7 +35,7 @@ p.hint{color:var(--muted);margin:4px 0 22px}
 .legend .key{display:inline-flex;gap:6px;align-items:center}
 .swatch{width:14px;height:14px;border-radius:3px;outline:1px solid rgba(255,255,255,.18)}
 
-.grid{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;align-items:center}
+.pm-grid{display:grid;grid-template-columns:140px 1fr;gap:10px 16px;align-items:center}
 .label{color:var(--muted);text-transform:lowercase;letter-spacing:.2px}
 
 .track{
@@ -71,5 +71,5 @@ p.hint{color:var(--muted);margin:4px 0 22px}
 .tip p{margin:4px 0;color:#cdd6df}
 
 @media (max-width:640px){
-  .grid{grid-template-columns:110px 1fr}
+  .pm-grid{grid-template-columns:110px 1fr}
 }
