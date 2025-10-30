@@ -1,6 +1,6 @@
 ---
-title: "Stop vibe-coding. Start spell-casting."
-summary: "AI keeps slipping out of the 'purely technical' box. It feels like casting. Power is available, but what arrives on the page depends on how you ask, how you aim, and how you hold the work while it is being shaped."
+title: "AI is Magic, Start spell casting"
+summary: "Coding with AI is an art. A Dark Art,  necromancy maybe..."
 date: "Oct 29 2025"
 draft: false
 tags:
@@ -11,7 +11,6 @@ tags:
 - Technical Writing
 ---
 
-# Stop vibe-coding. Start spell-casting.
 
 AI keeps slipping out of the "purely technical" box. It feels like casting. Power is available, but what arrives on the page depends on how you ask, how you aim, and how you hold the work while it is being shaped.
 

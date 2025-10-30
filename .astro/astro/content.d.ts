@@ -209,6 +209,13 @@ declare module 'astro:content' {
   collection: "blog";
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
+"08-ai-spell-casting/index.md": {
+	id: "08-ai-spell-casting/index.md";
+  slug: "08-ai-spell-casting";
+  body: string;
+  collection: "blog";
+  data: InferEntrySchema<"blog">
+} & { render(): Render[".md"] };
 };
 "legal": {
 "privacy.md": {
@@ -264,30 +271,37 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "work": {
-"apple.md": {
-	id: "apple.md";
-  slug: "apple";
+"adkit.md": {
+	id: "adkit.md";
+  slug: "adkit";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
-"facebook.md": {
-	id: "facebook.md";
-  slug: "facebook";
+"bank-hapoalim.md": {
+	id: "bank-hapoalim.md";
+  slug: "bank-hapoalim";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
-"google.md": {
-	id: "google.md";
-  slug: "google";
+"deloitte.md": {
+	id: "deloitte.md";
+  slug: "deloitte";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
 } & { render(): Render[".md"] };
-"mcdonalds.md": {
-	id: "mcdonalds.md";
-  slug: "mcdonalds";
+"eldritch-foundry.md": {
+	id: "eldritch-foundry.md";
+  slug: "eldritch-foundry";
+  body: string;
+  collection: "work";
+  data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+"wix.md": {
+	id: "wix.md";
+  slug: "wix";
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
