@@ -23,8 +23,8 @@ const containerStyles = [width ? `max-width: ${width}px` : ""].filter(Boolean).j
 ---
 
 <div class={`image-compare ${className ?? ""}`} style={containerStyles}>
-  <!-- Include the image compare web component from CDN -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@cloudfour/image-compare@latest/dist/index.min.js"></script>
+  <!-- Include the image compare web component from local file -->
+  <script type="module" src="/image-compare-local.js"></script>
 
   <image-compare label-text={labelText} class="image-compare__slider">
     <img

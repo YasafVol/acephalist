@@ -45,12 +45,6 @@ function formatWorkDate(input: Date | string) {
     <!-- Visual Representations Section -->
     <section class="animate">
       <div class="space-y-4">
-        <h2 class="text-2xl font-semibold text-black dark:text-white mb-4">
-          Visual Representations
-        </h2>
-        <p class="text-black/75 dark:text-white/75 mb-8">
-          A visual journey through different representations of myself - from digital avatar to artistic interpretation.
-        </p>
         <ImageCompare
           beforeSrc="/images/yasafVolDnD.png"
           afterSrc="/images/yasafVolDrawn.png"
@@ -68,39 +62,7 @@ function formatWorkDate(input: Date | string) {
       </article>
     </section>
 
-    <!-- Work Experience Section -->
-    <section class="animate mt-12">
-      <div class="space-y-4">
-        <h2 class="text-2xl font-semibold text-black dark:text-white mb-4">
-          Professional Journey
-        </h2>
-        <p class="text-black/75 dark:text-white/75">
-          My career progression and professional experience.
-        </p>
-      </div>
-    </section>
-
-    <!-- Work Timeline -->
-    <ul>
-      {
-        workItems.map((entry) => (
-          <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
-            <div class="text-sm uppercase mb-4">
-              {formatWorkDate(entry.data.dateStart)} - {formatWorkDate(entry.data.dateEnd)}
-            </div>
-            <div class="text-black dark:text-white font-semibold">
-              {entry.data.company}
-            </div>
-            <div class="text-sm font-semibold">
-              {entry.data.role}
-            </div>
-            <article class="prose dark:prose-invert mt-4">
-              <entry.Content />
-            </article>
-          </li>
-        ))
-      }
-    </ul>
+    
   </BottomLayout>
 </PageLayout>
 

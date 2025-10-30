@@ -11,4 +11,5 @@ dateEnd: "PRESENT"
 
 • Led tech stack modernization for external developers, enabling AI-first development and moving to non-proprietary runtime and hosting solutions.
 
+
 • Improved developer experience by introducing CI/CD pipeline and proto-Stage environment, coordinating six different teams to streamline build processes and provide code validations.

@@ -3,9 +3,6 @@ title: "About"
 date: "2024-03-17"
 ---
 
-## Visual Representations
-
-A visual journey through different representations of myself - from digital avatar to artistic interpretation.
 
 ## About Me
 

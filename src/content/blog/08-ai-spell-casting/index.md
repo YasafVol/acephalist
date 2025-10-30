@@ -14,7 +14,9 @@ tags:
 
 AI keeps slipping out of the "purely technical" box. It feels like casting. Power is available, but what arrives on the page depends on how you ask, how you aim, and how you hold the work while it is being shaped.
 
-This frame was sparked by *A Practical Guide to Sorcery* by Azalea Ellis. In that world, raw power exists, but results hinge on the caster's Will, and on the link between what is done and what is desired. Swap wands for laptops. The pattern holds.
+This frame was sparked by *A Practical Guide to Sorcery*[^1] by Azalea Ellis. In that world, raw power exists, but results hinge on the caster's Will, and on the link between what is done and what is desired. Swap wands for laptops. The pattern holds.
+
+[^1]: Practical Guide to Sorcery, Azalea Ellis. [link](https://a.co/d/dbkRGxo)
 
 ![AI Spell Casting](./cover.png)
 
