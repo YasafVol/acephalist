@@ -23,3 +23,9 @@ I currently work as a software engineer at StreamlineFS, where I do product plan
 ## Professional Journey
 
 My career progression and professional experience.
+
+---
+
+## Credits
+
+*Favicon source: [Phosphor Icons](https://phosphoricons.com/?q=not-member-of&weight=fill&size=96)*
