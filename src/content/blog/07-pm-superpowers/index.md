@@ -51,3 +51,10 @@ The visualization includes six key PM competencies:
 - **Team**: Leadership and mentorship strengths
 
 Toggle between different role views to see how each position contributed to my overall skillset, or view the cumulative "My Super Powers" to see the complete picture.
+
+## Sources
+
+This visualization was inspired by and draws framework concepts from:
+
+- [6 Superpowers to Seek Out as a Product](https://theskip.substack.com/p/6-superpowers-to-seek-out-as-a-product) - The Skip Newsletter
+- [Six Superpowers for Product Managers](https://theskip.substack.com/p/six-superpowers-for-product-managers-e84) - The Skip Newsletter
