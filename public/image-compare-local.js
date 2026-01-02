@@ -1,1 +1,263 @@
-const template=document.createElement("template"),thumbStyles="\n  background-color: var(--thumb-background-color);\n  background-image: var(--thumb-background-image);\n  background-size: 90%;\n  background-position: center center;\n  background-repeat: no-repeat;\n  border-radius: var(--thumb-radius);\n  border: var(--thumb-border-size) var(--thumb-border-color) solid;\n  color: var(--thumb-border-color);\n  width: var(--thumb-size);\n  height: var(--thumb-size);\n",thumbFocusStyles="\n  box-shadow: 0px 0px 0px var(--focus-width) var(--focus-color);\n",thumbSvgWidth=4;template.innerHTML=`\n  <style>\n    :host {\n      --exposure: 50%;\n\n      --thumb-background-color: hsl(0, 0%, 95%, 0.9);\n      --thumb-background-image: none;\n      --thumb-size: 24px;\n      --thumb-radius: 50%;\n      --thumb-border-color: hsl(0, 0%, 50%, 0.5);\n      --thumb-border-size: 2px;\n\n      --focus-width: var(--thumb-border-size);\n      --focus-color: hsl(220, 100%, 60%);\n\n      --divider-width: 2px;\n      --divider-color: hsl(0, 0%, 50%, 0.5);\n\n      display: flex;\n      flex-direction: column;\n      margin: 0;\n      overflow: hidden;\n      position: relative;\n    }\n\n    ::slotted(img) {\n      height: auto;\n      width: 100%;\n    }\n\n    ::slotted([slot='image-2']) {\n      clip-path: polygon(\n        calc(var(--exposure) + var(--divider-width)/2) 0, \n        100% 0, \n        100% 100%, \n        calc(var(--exposure) + var(--divider-width)/2) 100%);\n    }\n\n    slot {\n      display: flex;\n      flex-direction: column;\n      width: 100%;\n    }\n\n    slot[name='image-2'] {\n      position: absolute;\n      top:0;\n      filter: drop-shadow(calc(var(--divider-width) * -1) 0 0 var(--divider-color));\n    }\n\n    .visually-hidden {\n      border: 0; \n      clip: rect(0 0 0 0); \n      clip-path: polygon(0px 0px, 0px 0px, 0px);\n      -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px);\n      height: 1px; \n      margin: -1px;\n      overflow: hidden;\n      padding: 0;\n      position: absolute;\n      width: 1px;\n      white-space: nowrap;\n    }\n\n    label {\n      align-items: stretch;\n      display: flex;\n      position: absolute;\n      top: 0;\n      left: 0;\n      bottom: 0;\n      right: 0;\n    }\n\n    input {\n      cursor: col-resize;\n      margin: 0 calc(var(--thumb-size) / -2);\n      width: calc(100% + var(--thumb-size));\n      appearance: none;\n      -webkit-appearance: none;\n      background: none;\n      border: none;\n    }\n\n    ::-moz-range-thumb {\n      ${thumbStyles}\n    }\n\n    ::-webkit-slider-thumb {\n      -webkit-appearance: none;\n      ${thumbStyles}\n    }\n\n    input:focus::-moz-range-thumb {\n      ${thumbFocusStyles}\n    }\n\n    input:focus::-webkit-slider-thumb {\n      ${thumbFocusStyles}\n    }\n\n    input:hover::-moz-range-thumb {\n      ${thumbStyles}\n      --thumb-background-color: hsl(0, 0%, 90%, 0.8);\n      --thumb-border-color: hsl(0, 0%, 70%, 0.8);\n    }\n\n    input:hover::-webkit-slider-thumb {\n      ${thumbStyles}\n      --thumb-background-color: hsl(0, 0%, 90%, 0.8);\n      --thumb-border-color: hsl(0, 0%, 70%, 0.8);\n    }\n\n    .arrow-left {\n      position: absolute;\n      left: -40px;\n      top: 66%;\n      transform: translateY(-166%);\n      width: 0;\n      height: 0;\n      border-left: 10px solid transparent;\n      border-top: 10px solid transparent;\n      opacity: 0;\n      transition: opacity 0.2s ease, transform 0.2s ease;\n      pointer-events: none;\n      border-radius: 50%;\n    }\n\n    .arrow-right {\n      position: absolute;\n      right: -40px;\n      top: 66%;\n      transform: translateY(-166%);\n      width: 0;\n      height: 0;\n      border-right: 10px solid transparent;\n      border-top: 10px solid transparent;\n      opacity: 0;\n      transition: opacity 0.2s ease, transform 0.2s ease;\n      pointer-events: none;\n      border-radius: 50%;\n    }\n\n    .arrow-left::after {\n      content: '';\n      position: absolute;\n      left: -15px;\n      top: 66%;\n      transform: translateY(25%);\n      opacity: 0;\n      transition: opacity 0.2s ease, transform 0.2s ease;\n      width: 0;\n      height: 0;\n      border-left: 8px solid currentColor;\n      border-bottom: 8px solid currentColor;\n      border-top: 8px solid currentColor;\n      transform: rotate(45deg);\n    }\n\n    .arrow-right::after {\n      content: '';\n      position: absolute;\n      right: -15px;\n      top: 66%;\n      transform: translateY(25%);\n      opacity: 0;\n      transition: opacity 0.2s ease, transform 0.2s ease;\n      width: 0;\n      height: 0;\n      border-right: 8px solid currentColor;\n      border-bottom: 8px solid currentColor;\n      border-top: 8px solid currentColor;\n      transform: rotate(-45deg);\n    }\n\n    input:hover ~ .arrow-left,\n    input:hover ~ .arrow-right {\n      opacity: 1;\n    }\n\n    input:not(:hover) ~ .arrow-left,\n    input:not(:hover) ~ .arrow-right {\n      opacity: 0;\n      transition: opacity 0.2s ease;\n    }\n  </style>\n\n  <slot name="image-1"></slot>\n  <slot name="image-2"></slot>\n  \n  <div class="arrow-left"></div>\n  <div class="arrow-right"></div>\n  <label>\n    <span class="visually-hidden js-label-text">\n      Control how much of each overlapping image is shown. \n      0 means: first image is completely hidden and the second image is fully visible.\n      100 means: first image is fully visible and the second image is completely hidden.\n      50 means: both images are half-shown, half-hidden.\n    </span>\n    <input type="range" value="50" min="0" max="100"/>\n  </label>\n`;class ImageCompare extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"})}connectedCallback(){this.shadowRoot.appendChild(template.content.cloneNode(!0)),["input","change"].forEach((n=>{this.shadowRoot.querySelector("input").addEventListener(n,(({target:n})=>{this.animationFrame&&cancelAnimationFrame(this.animationFrame),this.animationFrame=requestAnimationFrame((()=>{this.shadowRoot.host.style.setProperty("--exposure",`${n.value}%`)}))}))}));const n=this.shadowRoot.host.getAttribute("label-text");n&&(this.shadowRoot.querySelector(".js-label-text").textContent=n)}}customElements.define("image-compare",ImageCompare);
+// Create template and style constants
+const template = document.createElement("template");
+
+const thumbStyles = `
+  background-color: var(--thumb-background-color);
+  background-image: var(--thumb-background-image);
+  background-size: 90%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-radius: var(--thumb-radius);
+  border: var(--thumb-border-size) var(--thumb-border-color) solid;
+  color: var(--thumb-border-color);
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+`;
+
+const thumbFocusStyles = `
+  box-shadow: 0px 0px 0px var(--focus-width) var(--focus-color);
+`;
+
+const thumbSvgWidth = 4;
+
+// Set template HTML with styles
+template.innerHTML = `
+  <style>
+    :host {
+      --exposure: 50%;
+
+      --thumb-background-color: hsl(0, 0%, 95%, 0.9);
+      --thumb-background-image: none;
+      --thumb-size: 24px;
+      --thumb-radius: 50%;
+      --thumb-border-color: hsl(0, 0%, 50%, 0.5);
+      --thumb-border-size: 2px;
+
+      --focus-width: var(--thumb-border-size);
+      --focus-color: hsl(220, 100%, 60%);
+
+      --divider-width: 2px;
+      --divider-color: hsl(0, 0%, 50%, 0.5);
+
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    ::slotted(img) {
+      height: auto;
+      width: 100%;
+    }
+
+    ::slotted([slot='image-2']) {
+      clip-path: polygon(
+        calc(var(--exposure) + var(--divider-width)/2) 0, 
+        100% 0, 
+        100% 100%, 
+        calc(var(--exposure) + var(--divider-width)/2) 100%
+      );
+    }
+
+    slot {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    slot[name='image-2'] {
+      position: absolute;
+      top: 0;
+      filter: drop-shadow(calc(var(--divider-width) * -1) 0 0 var(--divider-color));
+    }
+
+    .visually-hidden {
+      border: 0; 
+      clip: rect(0 0 0 0); 
+      clip-path: polygon(0px 0px, 0px 0px, 0px);
+      -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px);
+      height: 1px; 
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+      white-space: nowrap;
+    }
+
+    label {
+      align-items: stretch;
+      display: flex;
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+    input {
+      cursor: col-resize;
+      margin: 0 calc(var(--thumb-size) / -2);
+      width: calc(100% + var(--thumb-size));
+      appearance: none;
+      -webkit-appearance: none;
+      background: none;
+      border: none;
+    }
+
+    ::-moz-range-thumb {
+      ${thumbStyles}
+    }
+
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      ${thumbStyles}
+    }
+
+    input:focus::-moz-range-thumb {
+      ${thumbFocusStyles}
+    }
+
+    input:focus::-webkit-slider-thumb {
+      ${thumbFocusStyles}
+    }
+
+    input:hover::-moz-range-thumb {
+      ${thumbStyles}
+      --thumb-background-color: hsl(0, 0%, 90%, 0.8);
+      --thumb-border-color: hsl(0, 0%, 70%, 0.8);
+    }
+
+    input:hover::-webkit-slider-thumb {
+      ${thumbStyles}
+      --thumb-background-color: hsl(0, 0%, 90%, 0.8);
+      --thumb-border-color: hsl(0, 0%, 70%, 0.8);
+    }
+
+    .arrow-left {
+      position: absolute;
+      left: -40px;
+      top: 66%;
+      transform: translateY(-166%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-top: 10px solid transparent;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .arrow-right {
+      position: absolute;
+      right: -40px;
+      top: 66%;
+      transform: translateY(-166%);
+      width: 0;
+      height: 0;
+      border-right: 10px solid transparent;
+      border-top: 10px solid transparent;
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+      border-radius: 50%;
+    }
+
+    .arrow-left::after {
+      content: '';
+      position: absolute;
+      left: -15px;
+      top: 66%;
+      transform: translateY(25%);
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      width: 0;
+      height: 0;
+      border-left: 8px solid currentColor;
+      border-bottom: 8px solid currentColor;
+      border-top: 8px solid currentColor;
+      transform: rotate(45deg);
+    }
+
+    .arrow-right::after {
+      content: '';
+      position: absolute;
+      right: -15px;
+      top: 66%;
+      transform: translateY(25%);
+      opacity: 0;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      width: 0;
+      height: 0;
+      border-right: 8px solid currentColor;
+      border-bottom: 8px solid currentColor;
+      border-top: 8px solid currentColor;
+      transform: rotate(-45deg);
+    }
+
+    input:hover ~ .arrow-left,
+    input:hover ~ .arrow-right {
+      opacity: 1;
+    }
+
+    input:not(:hover) ~ .arrow-left,
+    input:not(:hover) ~ .arrow-right {
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+  </style>
+
+  <slot name="image-1"></slot>
+  <slot name="image-2"></slot>
+  
+  <div class="arrow-left"></div>
+  <div class="arrow-right"></div>
+  <label>
+    <span class="visually-hidden js-label-text">
+      Control how much of each overlapping image is shown. 
+      0 means: first image is completely hidden and the second image is fully visible.
+      100 means: first image is fully visible and the second image is completely hidden.
+      50 means: both images are half-shown, half-hidden.
+    </span>
+    <input type="range" value="50" min="0" max="100"/>
+  </label>
+`;
+
+// ImageCompare web component class
+class ImageCompare extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+  }
+
+  connectedCallback() {
+    // Clone template content to shadow DOM
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+    // Add event listeners for slider functionality
+    ["input", "change"].forEach((eventType) => {
+      this.shadowRoot.querySelector("input").addEventListener(eventType, ({ target }) => {
+        // Cancel any pending animation frame
+        if (this.animationFrame) {
+          cancelAnimationFrame(this.animationFrame);
+        }
+        
+        // Request new animation frame to update exposure
+        this.animationFrame = requestAnimationFrame(() => {
+          this.shadowRoot.host.style.setProperty("--exposure", `${target.value}%`);
+        });
+      });
+    });
+
+    // Update label text if provided
+    const labelText = this.shadowRoot.host.getAttribute("label-text");
+    if (labelText) {
+      this.shadowRoot.querySelector(".js-label-text").textContent = labelText;
+    }
+  }
+}
+
+// Define the custom element
+customElements.define("image-compare", ImageCompare);
