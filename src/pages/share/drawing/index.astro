@@ -1,0 +1,87 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+---
+
+<PageLayout
+  title="Shared Drawing"
+  description="View a shared drawing."
+  robots="noindex,nofollow"
+>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        Shared Drawing
+      </h1>
+      <div class="mt-1">
+        This link opens an unlisted drawing.
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <div
+        id="drawing-status"
+        class="text-sm uppercase text-black/60 dark:text-white/60"
+      >
+        Loading shared drawing...
+      </div>
+      <div class="mt-4">
+        <h2
+          id="drawing-title"
+          class="text-xl font-semibold text-black dark:text-white"
+        ></h2>
+        <div
+          id="drawing-root"
+          class="mt-3 border border-dashed border-black/20 dark:border-white/25 rounded-lg p-6 min-h-[360px] flex items-center justify-center text-sm text-black/60 dark:text-white/60"
+        >
+          Drawing canvas will appear here.
+        </div>
+        <div
+          id="drawing-ref"
+          class="mt-3 text-xs text-black/50 dark:text-white/50 break-all"
+        ></div>
+      </div>
+    </div>
+  </BottomLayout>
+
+  <script is:inline>
+    const statusEl = document.getElementById("drawing-status")
+    const titleEl = document.getElementById("drawing-title")
+    const refEl = document.getElementById("drawing-ref")
+    const rootEl = document.getElementById("drawing-root")
+
+    function setStatus(text) {
+      if (statusEl) statusEl.textContent = text
+    }
+
+    async function loadDrawing() {
+      const params = new URLSearchParams(window.location.search)
+      const token = params.get("share")
+
+      if (!token) {
+        setStatus("Missing share token.")
+        return
+      }
+
+      try {
+        const res = await fetch(`/api/drawings-share?token=${encodeURIComponent(token)}`)
+        if (!res.ok) {
+          setStatus("Drawing not found or unavailable.")
+          return
+        }
+
+        const drawing = await res.json()
+        setStatus("Shared drawing")
+        if (titleEl) titleEl.textContent = drawing.title || "Untitled"
+        if (refEl && drawing.dataRef) refEl.textContent = `dataRef: ${drawing.dataRef}`
+        if (rootEl && drawing.dataRef) rootEl.dataset.dataRef = drawing.dataRef
+      } catch (err) {
+        setStatus("Failed to load drawing.")
+      }
+    }
+
+    loadDrawing()
+  </script>
+</PageLayout>

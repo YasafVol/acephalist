@@ -1,0 +1,33 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import UtilsAuth from "@components/utils/UtilsAuth.astro"
+---
+
+<PageLayout
+  title="Scratchpad"
+  description="Write, preview, and export markdown notes."
+>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        Scratchpad
+      </h1>
+      <div class="mt-1">
+        A markdown editor with live preview, autosave, and export.
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <UtilsAuth />
+      <div
+        id="scratchpad-root"
+        class="border border-dashed border-black/20 dark:border-white/25 rounded-lg p-6 min-h-[360px] flex items-center justify-center text-sm text-black/60 dark:text-white/60"
+      >
+        Scratchpad editor will appear here.
+      </div>
+    </div>
+  </BottomLayout>
+</PageLayout>

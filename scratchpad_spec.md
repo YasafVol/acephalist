@@ -25,6 +25,8 @@ Public by default (unlisted), with an easy way to mark a note private. Notes and
 - /utils: landing page with cards/links to each utility.
 - /utils/scratchpad: editor + preview.
 - /utils/draw: Excalidraw app.
+- /share/note: static share page that reads `?share=slug-token` and fetches note data client-side.
+- /share/drawing: static share page that reads `?share=slug-token` and fetches drawing data client-side.
 
 ## UX Details
 Scratchpad
@@ -94,7 +96,11 @@ Public access
 - Netlify Blobs for drawings and large artifacts (exports and versioned JSON).
 - Pros: stays on Netlify, sync across devices, supports public links without rebuilds.
 - Cons: more code, needs auth for write access, network latency.
+- Dev/testing data shares the same DB; plan to delete test rows before launch and keep share links private.
+- Blobs are optimized for frequent reads and infrequent writes; keep autosave at 3-5s idle (no per-keystroke writes).
+- Blobs are last-write-wins; default consistency is eventual.
 - Future scale: if DB row limits are hit, move large bodies to Blobs and store a pointer in DB.
+- Future scale: if share-page performance needs improvement, switch `/share/note` and `/share/drawing` to SSR using the Netlify adapter (`output: "hybrid"` + `prerender = false`).
 
 ## Package Decisions (open source, minimal code)
 Editor + Preview (two-pane)
@@ -129,6 +135,7 @@ Excalidraw
 ### Netlify Blobs
 - Enable Netlify Blobs for the site.
 - Install Blobs client dependency: `@netlify/blobs`.
+- Blobs are optimized for frequent reads and infrequent writes; avoid per-keystroke uploads.
 - Create namespaces (buckets) for `excalidraw-json`, `excalidraw-png`, and `excalidraw-svg`.
 - Record the namespace names and use them consistently in code and Functions.
 - Use `getStore` for global stores (production) and `getDeployStore` for deploy-scoped stores (non-production).
@@ -169,8 +176,8 @@ Shared Site
 - [ ] Create `src/pages/utils/index.astro` using `PageLayout` + `Container`; render two cards linking to `/utils/scratchpad` and `/utils/draw` using existing card styles (same border/hover classes as blog/project cards).
 - [ ] Create `src/pages/utils/scratchpad.astro` with a mount element for the React editor island and a page heading.
 - [ ] Create `src/pages/utils/draw.astro` with a mount element for the React Excalidraw island and a page heading.
-- [ ] Create `src/pages/u/[slug]-[token].astro` that fetches a note by share token and renders sanitized markdown; include `<meta name="robots" content="noindex,nofollow">`.
-- [ ] Create `src/pages/d/[slug]-[token].astro` that fetches a drawing by share token and renders Excalidraw in view-only mode; include `<meta name="robots" content="noindex,nofollow">`.
+- [ ] Create `src/pages/share/note/index.astro` that reads `?share=slug-token`, fetches a note by share token client-side, and renders sanitized markdown; include `<meta name="robots" content="noindex,nofollow">`.
+- [ ] Create `src/pages/share/drawing/index.astro` that reads `?share=slug-token`, fetches a drawing by share token client-side, and renders Excalidraw in view-only mode; include `<meta name="robots" content="noindex,nofollow">`.
 
 React Integration
 - [ ] Add dependencies: `@astrojs/react`, `react`, `react-dom` in `package.json`.
@@ -181,6 +188,8 @@ Netlify Backend
 - [ ] Add server dependencies: `@netlify/functions`, `@netlify/neon`, `@netlify/blobs`.
 - [ ] Create all Functions in `netlify/functions/*.mts` using the latest Netlify function format (default export `(req, context)` + exported `config` with `path`).
 - [ ] Do not add CORS headers unless explicitly requested.
+- [ ] Use `const sql = neon()` without passing a connection string; rely on Netlify-provided env vars.
+- [ ] Read env vars only via `Netlify.env.*` in Functions.
 - [ ] Create Netlify DB table `notes` using the Data Model (id uuid pk, slug text unique, shareToken text unique, title text, body text, summary text nullable, tags text/json, visibility text, createdAt timestamp, updatedAt timestamp).
 - [ ] Create Netlify DB table `note_versions` (id uuid pk, noteId uuid fk, body text, createdAt timestamp, previousVersionId uuid nullable).
 - [ ] Create Netlify DB table `drawings` (id uuid pk, slug text unique, shareToken text unique, title text nullable, dataRef text, visibility text, createdAt timestamp, updatedAt timestamp).
@@ -210,7 +219,7 @@ Scratchpad
 - [ ] Implement "Export .md" download with YAML frontmatter (title/summary/tags/visibility) + body.
 - [ ] Implement "Toggle preview" to hide/show the preview pane.
 - [ ] Implement "Visibility" toggle to switch public/private.
-- [ ] Implement "Copy share link" using the returned slug + token.
+- [ ] Implement "Copy share link" using `?share=slug-token`.
 - [ ] Implement "Save version" to call `notes-version` (explicit save only).
 - [ ] Implement local autosave to localStorage/IndexedDB and restore on page load.
 - [ ] Implement remote autosave on 3-5s idle and on blur to `notes-upsert` (update latest only).
@@ -238,14 +247,14 @@ Styling
 - Editor UI matches the site styling.
 - Excalidraw runs as full app, autosaves locally, and exports drawings.
 - Public content is accessible via unlisted share links without a rebuild.
-- Share links use slug + token format.
+- Share links use slug + token format in `?share=slug-token`.
 - Share pages are noindex/nofollow.
 - Explicit save creates a new linked version; delete is hard delete.
 
 ## Decisions (Chosen)
 - Auth: Netlify Identity.
 - Public access: unlisted share links only (no public index).
-- Share links: slug + token format.
+- Share links: slug + token format in `?share=slug-token`.
 - Visibility default: public (unlisted).
 - Deletes: hard delete only; versions only on explicit save.
 - Autosave: remote sync on 3-5s idle + on blur; local autosave always on; latest stays fresh; allow bursts, throttle on limits.

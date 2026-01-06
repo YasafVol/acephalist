@@ -1,0 +1,58 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import UtilsAuth from "@components/utils/UtilsAuth.astro"
+---
+
+<PageLayout
+  title="Utils"
+  description="Quick utilities for scratchpad notes and drawings."
+>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        Utils
+      </h1>
+      <div class="mt-1">
+        Quick utilities for drafts, notes, and drawings.
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <UtilsAuth />
+      <div class="grid gap-4 sm:grid-cols-2">
+        <a
+          href="/utils/scratchpad"
+          class="group p-4 gap-2 flex flex-col border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+        >
+          <div class="text-sm uppercase text-black/60 dark:text-white/60">
+            Scratchpad
+          </div>
+          <div class="text-lg font-semibold text-black dark:text-white">
+            Markdown editor
+          </div>
+          <div class="text-sm">
+            Write, preview, and export notes with autosave.
+          </div>
+        </a>
+
+        <a
+          href="/utils/draw"
+          class="group p-4 gap-2 flex flex-col border rounded-lg hover:bg-black/5 hover:dark:bg-white/10 border-black/15 dark:border-white/20 transition-colors duration-300 ease-in-out"
+        >
+          <div class="text-sm uppercase text-black/60 dark:text-white/60">
+            Draw
+          </div>
+          <div class="text-lg font-semibold text-black dark:text-white">
+            Excalidraw
+          </div>
+          <div class="text-sm">
+            Sketch diagrams with autosave and exports.
+          </div>
+        </a>
+      </div>
+    </div>
+  </BottomLayout>
+</PageLayout>
