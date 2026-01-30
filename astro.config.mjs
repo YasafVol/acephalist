@@ -7,5 +7,15 @@ import solidJs from "@astrojs/solid-js"
 // https://astro.build/config
 export default defineConfig({
   site: "https://acephalist.netlify.app",
-  integrations: [mdx(), sitemap(), solidJs(), tailwind({ applyBaseStyles: false })],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.includes("/share/"),
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    solidJs(),
+    tailwind({ applyBaseStyles: false }),
+  ],
 })
