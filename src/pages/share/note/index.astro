@@ -34,7 +34,7 @@ import BottomLayout from "@layouts/BottomLayout.astro"
         ></h2>
         <div
           id="share-body"
-          class="mt-3 whitespace-pre-wrap text-black/80 dark:text-white/80"
+          class="mt-3 prose prose-neutral dark:prose-invert max-w-none text-black/80 dark:text-white/80"
         ></div>
       </div>
     </div>
@@ -47,6 +47,47 @@ import BottomLayout from "@layouts/BottomLayout.astro"
 
     function setStatus(text) {
       if (statusEl) statusEl.textContent = text
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;")
+    }
+
+    function formatInline(value) {
+      let out = escapeHtml(value)
+      out = out.replace(/`([^`]+?)`/g, "<code>$1</code>")
+      out = out.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>")
+      out = out.replace(/\*([^*]+?)\*/g, "<em>$1</em>")
+      out = out.replace(/\[([^\]]+?)\]\(([^)]+?)\)/g, (_, text, href) => {
+        const isSafe = /^(https?:\/\/|mailto:|\/|#)/i.test(String(href).trim())
+        const url = isSafe ? escapeHtml(String(href).trim()) : "#"
+        return `<a href="${url}" rel="noopener noreferrer nofollow" target="_blank">${text}</a>`
+      })
+      return out
+    }
+
+    function markdownToHtml(markdown) {
+      const lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n")
+      const html = []
+      for (const line of lines) {
+        const heading = line.match(/^(#{1,6})\s+(.+)$/)
+        if (heading) {
+          const level = heading[1].length
+          html.push(`<h${level}>${formatInline(heading[2])}</h${level}>`)
+          continue
+        }
+        if (line.trim().length === 0) {
+          html.push("")
+          continue
+        }
+        html.push(`<p>${formatInline(line)}</p>`)
+      }
+      return html.join("\n")
     }
 
     async function loadNote() {
@@ -68,7 +109,7 @@ import BottomLayout from "@layouts/BottomLayout.astro"
         const note = await res.json()
         setStatus("Shared note")
         if (titleEl) titleEl.textContent = note.title || "Untitled"
-        if (bodyEl) bodyEl.textContent = note.body || ""
+        if (bodyEl) bodyEl.innerHTML = markdownToHtml(note.body || "")
       } catch (err) {
         setStatus("Failed to load note.")
       }

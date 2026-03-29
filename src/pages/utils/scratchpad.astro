@@ -3,6 +3,7 @@ import PageLayout from "@layouts/PageLayout.astro"
 import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
 import UtilsAuth from "@components/utils/UtilsAuth.astro"
+import ScratchpadEditor from "@components/utils/Scratchpad"
 ---
 
 <PageLayout
@@ -22,12 +23,7 @@ import UtilsAuth from "@components/utils/UtilsAuth.astro"
   <BottomLayout>
     <div class="animate">
       <UtilsAuth />
-      <div
-        id="scratchpad-root"
-        class="border border-dashed border-black/20 dark:border-white/25 rounded-lg p-6 min-h-[360px] flex items-center justify-center text-sm text-black/60 dark:text-white/60"
-      >
-        Scratchpad editor will appear here.
-      </div>
+      <ScratchpadEditor client:load />
     </div>
   </BottomLayout>
 </PageLayout>
