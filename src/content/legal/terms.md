@@ -1,27 +1,40 @@
 ---
 title: "Terms of Use"
-date: "03/07/2024"
+date: "2026-03-29"
 ---
 
-Please read these Terms of Use ("Terms", "Terms of Use") carefully before using the [Your Website URL] website (the "Service") operated by [Your Company Name] ("us", "we", or "our").
+These Terms of Use govern your use of Acephalist.
 
-#### Agreement to Terms
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+#### Use of the site
 
-#### Intellectual Property Rights
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+You may browse and use this site for personal, informational, and lawful purposes only. You agree not to misuse the site, interfere with its operation, attempt unauthorized access, or use the site in a way that could harm the site or other users.
 
-#### User Representations
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+#### Content
 
-#### Links to Other Websites
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+Unless stated otherwise, the content on this site is provided by the site owner and is protected by applicable intellectual property laws. You may view and share links to public pages, but you should not reproduce or republish site content in bulk without permission.
 
-#### Termination
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+#### Utility features and user content
 
-#### Governing Law
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+If you use utility features that let you create, save, or share notes or other content, you are responsible for the material you submit. Do not upload unlawful content, content you do not have rights to use, or material that could harm others or the service.
 
-#### Changes to These Terms of Use
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet massa ut neque consequat congue. Sed id ipsum vitae sem imperdiet suscipit. Nulla facilisi. Morbi quis nibh at nunc pulvinar rhoncus. Proin porttitor dapibus dolor, id fermentum urna eleifend et. In feugiat pretium erat nec vestibulum.
+The site owner may remove or disable utility features, shared content, or access to those features at any time.
+
+#### External links
+
+This site may link to third-party websites and services. Those destinations are outside the site owner's control and are governed by their own terms and policies.
+
+#### No warranty
+
+This site is provided on an "as is" and "as available" basis. The site owner does not guarantee uninterrupted availability, error-free operation, or that any content is complete, accurate, or suitable for a particular purpose.
+
+#### Limitation of liability
+
+To the fullest extent permitted by law, the site owner is not liable for losses or damages arising from your use of, or inability to use, the site.
+
+#### Changes
+
+These terms may be updated from time to time. Continued use of the site after changes are posted means you accept the updated terms.
+
+#### Contact
+
+Questions about these terms can be sent to [yasaf.vol@gmail.com](mailto:yasaf.vol@gmail.com).

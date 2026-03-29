@@ -1,0 +1,191 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+
+export async function getStaticPaths() {
+  const exercises = await getCollection("exercises")
+
+  return exercises
+    .filter((exercise) => !exercise.data.draft)
+    .map((exercise) => ({
+      params: { slug: exercise.slug },
+      props: { exercise },
+    }))
+}
+
+type Props = {
+  exercise: CollectionEntry<"exercises">
+}
+
+const { exercise } = Astro.props
+const { Content } = await exercise.render()
+---
+
+<PageLayout title={exercise.data.title} description={exercise.data.summary}>
+  <div class="relative overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.14),_transparent_32%),radial-gradient(circle_at_82%_18%,_rgba(0,0,0,0.05),_transparent_20%)] dark:bg-[radial-gradient(circle_at_top,_rgba(190,242,100,0.1),_transparent_30%),radial-gradient(circle_at_82%_18%,_rgba(255,255,255,0.05),_transparent_16%)]"></div>
+
+    <TopLayout>
+      <section class="animate relative">
+        <a
+          href="/workouts"
+          class="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-white hover:text-black dark:border-white/15 dark:bg-white/[0.05] dark:text-white/70 dark:hover:bg-white/[0.1] dark:hover:text-white"
+        >
+          <svg class="size-4 rotate-180 stroke-current transition-transform duration-300 ease-in-out group-hover:-translate-x-0.5">
+            <use href="/ui.svg#arrow-right" />
+          </svg>
+          Back to workouts
+        </a>
+
+        <div class="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_16rem] lg:items-end">
+          <div class="max-w-3xl">
+            <div class="w-fit rounded-full border border-lime-200/70 bg-lime-100/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-lime-950 dark:border-lime-300/20 dark:bg-lime-300/10 dark:text-lime-200">
+              Exercise notes
+            </div>
+            <h1 class="mt-5 text-4xl font-semibold tracking-tight text-black dark:text-white md:text-5xl">
+              {exercise.data.title}
+            </h1>
+            <p class="mt-4 max-w-2xl text-base leading-7 text-black/70 dark:text-white/70 md:text-lg">
+              {exercise.data.summary}
+            </p>
+          </div>
+
+          {exercise.data.aliases.length > 0 && (
+            <div class="rounded-[1.75rem] border border-black/10 bg-white/70 p-5 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+              <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/45 dark:text-white/45">
+                Also listed as
+              </div>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {exercise.data.aliases.map((alias) => (
+                  <li class="rounded-full border border-black/10 bg-black/[0.03] px-3 py-1 text-sm text-black/75 dark:border-white/10 dark:bg-white/[0.04] dark:text-white/75">
+                    {alias}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </section>
+    </TopLayout>
+
+    <BottomLayout>
+      <div class="space-y-8">
+        <section class="animate grid gap-8 lg:grid-cols-[1.25fr_0.95fr]">
+          <div class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+            <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+              Description
+            </div>
+            <article class="exercise-prose mt-5">
+              <Content />
+            </article>
+          </div>
+
+          <div class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+            <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+              Images
+            </div>
+            {exercise.data.images.length > 0 ? (
+              <div class="mt-5 grid gap-4">
+                {exercise.data.images.map((image) => (
+                  <figure class="overflow-hidden rounded-[1.5rem] border border-black/10 bg-black/[0.03] dark:border-white/10 dark:bg-white/[0.03]">
+                    <img src={image.src} alt={image.alt} class="w-full object-cover" />
+                    {image.caption && (
+                      <figcaption class="border-t border-black/10 px-4 py-3 text-sm text-black/60 dark:border-white/10 dark:text-white/60">
+                        {image.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                ))}
+              </div>
+            ) : (
+              <div class="mt-5 rounded-[1.5rem] border border-dashed border-black/15 bg-black/[0.02] px-5 py-8 text-sm leading-6 text-black/60 dark:border-white/15 dark:bg-white/[0.02] dark:text-white/60">
+                No reference images added yet. This slot is ready for form photos, setup stills, or coaching diagrams.
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section class="animate grid gap-8 lg:grid-cols-2">
+          <div class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+            <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+              Key points
+            </div>
+            {exercise.data.keyPoints.length > 0 ? (
+              <ul class="mt-5 space-y-3">
+                {exercise.data.keyPoints.map((point) => (
+                  <li class="rounded-[1.25rem] border border-black/10 bg-black/[0.02] px-4 py-4 text-sm leading-6 text-black/75 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/75">
+                    {point}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div class="mt-5 rounded-[1.5rem] border border-dashed border-black/15 bg-black/[0.02] px-5 py-8 text-sm leading-6 text-black/60 dark:border-white/15 dark:bg-white/[0.02] dark:text-white/60">
+                Key reminders have not been added yet.
+              </div>
+            )}
+          </div>
+
+          <div class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+            <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+              Training cues
+            </div>
+            {exercise.data.trainingCues.length > 0 ? (
+              <ul class="mt-5 space-y-3">
+                {exercise.data.trainingCues.map((cue) => (
+                  <li class="rounded-[1.25rem] border border-black/10 bg-black/[0.02] px-4 py-4 text-sm leading-6 text-black/75 dark:border-white/10 dark:bg-white/[0.03] dark:text-white/75">
+                    {cue}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <div class="mt-5 rounded-[1.5rem] border border-dashed border-black/15 bg-black/[0.02] px-5 py-8 text-sm leading-6 text-black/60 dark:border-white/15 dark:bg-white/[0.02] dark:text-white/60">
+                Technique cues have not been added yet.
+              </div>
+            )}
+          </div>
+        </section>
+
+        <section class="animate rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+          <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+            YouTube videos
+          </div>
+          {exercise.data.youtubeLinks.length > 0 ? (
+            <ul class="mt-5 grid gap-4 md:grid-cols-2">
+              {exercise.data.youtubeLinks.map((video) => (
+                <li>
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="group flex h-full items-center justify-between gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] px-5 py-4 text-sm transition-colors duration-300 ease-in-out hover:border-lime-300 hover:bg-lime-100/70 hover:text-black dark:border-white/10 dark:bg-white/[0.03] dark:hover:border-lime-300/30 dark:hover:bg-lime-300/10 dark:hover:text-white"
+                  >
+                    <span class="font-semibold">{video.label}</span>
+                    <svg class="size-4 stroke-current transition-transform duration-300 ease-in-out group-hover:translate-x-0.5">
+                      <use href="/ui.svg#arrow-right" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <div class="mt-5 rounded-[1.5rem] border border-dashed border-black/15 bg-black/[0.02] px-5 py-8 text-sm leading-6 text-black/60 dark:border-white/15 dark:bg-white/[0.02] dark:text-white/60">
+              No video references linked yet. Add a few strong demos or coaching breakdowns when you curate them.
+            </div>
+          )}
+        </section>
+      </div>
+    </BottomLayout>
+  </div>
+</PageLayout>
+
+<style>
+  .exercise-prose {
+    @apply prose max-w-none text-black/75 dark:prose-invert dark:text-white/75;
+  }
+
+  .exercise-prose p {
+    @apply leading-7;
+  }
+</style>

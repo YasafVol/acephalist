@@ -32,6 +32,12 @@ export const PROJECTS: Page = {
   DESCRIPTION: "Recent projects I have worked on.",
 };
 
+// Workouts Page
+export const WORKOUTS: Page = {
+  TITLE: "Workouts",
+  DESCRIPTION: "Training plans and exercise notes I am tracking.",
+};
+
 // Search Page
 export const SEARCH: Page = {
   TITLE: "Search",
@@ -59,6 +65,10 @@ export const LINKS: Links = [
   {
     TEXT: "Projects",
     HREF: "/projects",
+  },
+  {
+    TEXT: "Workouts",
+    HREF: "/workouts",
   },
   {
     TEXT: "Utils",

@@ -1,0 +1,128 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import ExerciseLinks from "@components/workouts/ExerciseLinks.astro"
+import {
+  buildExerciseMap,
+  formatWorkoutDate,
+  groupWorkoutBlocks,
+  resolveExerciseRefs,
+} from "@lib/workouts"
+
+export async function getStaticPaths() {
+  const plans = await getCollection("workoutPlans")
+
+  return plans.map((plan) => ({
+    params: { slug: plan.slug },
+    props: { plan },
+  }))
+}
+
+type Props = {
+  plan: CollectionEntry<"workoutPlans">
+}
+
+const { plan } = Astro.props
+const exercises = (await getCollection("exercises"))
+  .filter((exercise) => !exercise.data.draft)
+const exerciseMap = buildExerciseMap(exercises)
+
+const days = plan.data.days.map((day) => ({
+  ...day,
+  groups: groupWorkoutBlocks(day.blocks).map((group) => ({
+    ...group,
+    blocks: group.blocks.map((block) => ({
+      ...block,
+      exercises: resolveExerciseRefs(exerciseMap, block.exerciseRefs),
+    })),
+  })),
+}))
+
+---
+
+<PageLayout title={plan.data.title} description={plan.data.summary}>
+  <div>
+    <TopLayout>
+      <section class="animate relative">
+        <a
+          href="/workouts"
+          class="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-white hover:text-black dark:border-white/15 dark:bg-white/[0.05] dark:text-white/70 dark:hover:bg-white/[0.1] dark:hover:text-white"
+        >
+          <svg class="size-4 rotate-180 stroke-current transition-transform duration-300 ease-in-out group-hover:-translate-x-0.5">
+            <use href="/ui.svg#arrow-right" />
+          </svg>
+          Back to workouts
+        </a>
+
+        <div class="mt-8 max-w-3xl">
+          <div class="text-sm uppercase tracking-[0.22em] text-black/50 dark:text-white/50">
+            {formatWorkoutDate(plan.data.date)}
+          </div>
+          <h1 class="mt-5 text-4xl font-semibold tracking-tight text-black dark:text-white md:text-5xl">
+            {plan.data.title}
+          </h1>
+          <p class="mt-4 max-w-2xl text-base leading-7 text-black/70 dark:text-white/70 md:text-lg">
+            {plan.data.summary}
+          </p>
+        </div>
+      </section>
+    </TopLayout>
+
+    <BottomLayout>
+      <section class="animate">
+        <div class="mx-auto max-w-5xl">
+          <ol class="space-y-8">
+            {days.map((day) => (
+              <li class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
+                <div class="grid gap-6 lg:grid-cols-[10rem_minmax(0,1fr)]">
+                  <div>
+                    <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/45 dark:text-white/45">
+                      {day.dayLabel}
+                    </div>
+                    <div class="mt-3 w-fit rounded-full border border-lime-200/70 bg-lime-100/70 px-3 py-1 text-sm font-semibold text-lime-950 dark:border-lime-300/20 dark:bg-lime-300/10 dark:text-lime-200">
+                      {day.focus}
+                    </div>
+                    {day.notes && (
+                      <p class="mt-4 text-sm leading-6 text-black/60 dark:text-white/60">
+                        {day.notes}
+                      </p>
+                    )}
+                  </div>
+
+                  <div class="space-y-4">
+                    {day.groups.map((group) => (
+                      <div class="grid gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] p-4 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[3.5rem_minmax(0,1fr)]">
+                        <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+                          {group.label}
+                        </div>
+                        <div class="space-y-3">
+                          {group.blocks.map((block) => (
+                            <div class="flex flex-col gap-3 rounded-[1.15rem] border border-black/10 bg-white/70 p-4 dark:border-white/10 dark:bg-black/10 xl:flex-row xl:items-center xl:justify-between">
+                              <div>
+                                <div class="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+                                  {block.slotLabel}
+                                </div>
+                                <div class="mt-2">
+                                  <ExerciseLinks exercises={block.exercises} separator={block.separator} />
+                                </div>
+                              </div>
+                              <div class="text-sm font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-white/55">
+                                {block.prescription}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    </BottomLayout>
+  </div>
+</PageLayout>

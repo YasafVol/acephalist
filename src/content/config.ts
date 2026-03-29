@@ -34,6 +34,47 @@ const projects = defineCollection({
   }),
 })
 
+const workoutPlans = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    date: z.coerce.date(),
+    days: z.array(z.object({
+      dayLabel: z.string(),
+      focus: z.string(),
+      notes: z.string().optional(),
+      blocks: z.array(z.object({
+        slotLabel: z.string(),
+        prescription: z.string(),
+        exerciseRefs: z.array(z.string()).min(1),
+        separator: z.enum(["single", "slash", "or"]).default("single"),
+      })),
+    })).min(1),
+  }),
+})
+
+const exercises = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    images: z.array(z.object({
+      src: z.string(),
+      alt: z.string(),
+      caption: z.string().optional(),
+    })).default([]),
+    keyPoints: z.array(z.string()).default([]),
+    trainingCues: z.array(z.string()).default([]),
+    youtubeLinks: z.array(z.object({
+      label: z.string(),
+      url: z.string().url(),
+    })).default([]),
+    aliases: z.array(z.string()).default([]),
+    draft: z.boolean().optional(),
+  }),
+})
+
 const legal = defineCollection({
   type: "content",
   schema: z.object({
@@ -50,4 +91,4 @@ const about = defineCollection({
   }),
 })
 
-export const collections = { work, blog, projects, legal, about }
+export const collections = { work, blog, projects, workoutPlans, exercises, legal, about }
