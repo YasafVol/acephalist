@@ -85,7 +85,7 @@ const dayIds = days.map((day) =>
         <div class="mx-auto max-w-5xl">
           {/* Sticky day navigation */}
           <nav id="day-nav" class="sticky top-16 z-10 -mx-5 mb-6 flex items-center gap-1 border-b border-black/10 bg-white/80 px-5 py-2.5 backdrop-blur-md dark:border-white/10 dark:bg-black/80">
-            {days.map((day, i) => (
+            {days.map((_day, i) => (
               <a
                 href={`#${dayIds[i]}`}
                 data-day={dayIds[i]}
@@ -185,9 +185,6 @@ const dayIds = days.map((day) =>
   const sections = [...links].map((link) =>
     document.getElementById(link.dataset.day!)
   ).filter(Boolean) as HTMLElement[]
-
-  const activeClass = "text-black dark:text-white"
-  const inactiveClass = "text-black/40 dark:text-white/40"
 
   function setActive(id: string) {
     links.forEach((link) => {
