@@ -40,6 +40,16 @@ const days = plan.data.days.map((day) => ({
   })),
 }))
 
+function parsePrescription(rx: string) {
+  const match = rx.match(/^(\d[\d-]*)\s*x\s*(.+)$/i)
+  if (!match) return { sets: null, reps: rx }
+  return { sets: match[1], reps: match[2] }
+}
+
+const dayIds = days.map((day) =>
+  day.dayLabel.toLowerCase().replace(/\s+/g, "-")
+)
+
 ---
 
 <PageLayout title={plan.data.title} description={plan.data.summary}>
@@ -48,7 +58,7 @@ const days = plan.data.days.map((day) => ({
       <section class="animate relative">
         <a
           href="/workouts"
-          class="group inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-sm text-black/70 transition-colors duration-300 ease-in-out hover:bg-white hover:text-black dark:border-white/15 dark:bg-white/[0.05] dark:text-white/70 dark:hover:bg-white/[0.1] dark:hover:text-white"
+          class="group inline-flex items-center gap-2 border border-black/15 px-3 py-1.5 text-sm text-black/70 transition-all duration-300 ease-in-out hover:border-black/25 hover:text-black dark:border-white/15 dark:text-white/70 dark:hover:border-white/25 dark:hover:text-white"
         >
           <svg class="size-4 rotate-180 stroke-current transition-transform duration-300 ease-in-out group-hover:-translate-x-0.5">
             <use href="/ui.svg#arrow-right" />
@@ -57,11 +67,11 @@ const days = plan.data.days.map((day) => ({
         </a>
 
         <div class="mt-8 max-w-3xl">
-          <div class="text-sm uppercase tracking-[0.22em] text-black/50 dark:text-white/50">
-            {formatWorkoutDate(plan.data.date)}
-          </div>
-          <h1 class="mt-5 text-4xl font-semibold tracking-tight text-black dark:text-white md:text-5xl">
+          <h1 class="text-4xl font-semibold tracking-tight text-black dark:text-white md:text-5xl">
             {plan.data.title}
+            <span class="ml-3 align-middle text-sm font-normal uppercase tracking-[0.2em] text-black/35 dark:text-white/35">
+              {formatWorkoutDate(plan.data.date)}
+            </span>
           </h1>
           <p class="mt-4 max-w-2xl text-base leading-7 text-black/70 dark:text-white/70 md:text-lg">
             {plan.data.summary}
@@ -73,51 +83,94 @@ const days = plan.data.days.map((day) => ({
     <BottomLayout>
       <section class="animate">
         <div class="mx-auto max-w-5xl">
-          <ol class="space-y-8">
-            {days.map((day) => (
-              <li class="rounded-[2rem] border border-black/10 bg-white/75 p-6 backdrop-blur-sm dark:border-white/15 dark:bg-white/[0.04]">
-                <div class="grid gap-6 lg:grid-cols-[10rem_minmax(0,1fr)]">
-                  <div>
-                    <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/45 dark:text-white/45">
-                      {day.dayLabel}
-                    </div>
-                    <div class="mt-3 w-fit rounded-full border border-lime-200/70 bg-lime-100/70 px-3 py-1 text-sm font-semibold text-lime-950 dark:border-lime-300/20 dark:bg-lime-300/10 dark:text-lime-200">
-                      {day.focus}
-                    </div>
-                    {day.notes && (
-                      <p class="mt-4 text-sm leading-6 text-black/60 dark:text-white/60">
-                        {day.notes}
-                      </p>
-                    )}
-                  </div>
+          {/* Sticky day navigation */}
+          <nav id="day-nav" class="sticky top-16 z-10 -mx-5 mb-6 flex items-center gap-1 border-b border-black/10 bg-white/80 px-5 py-2.5 backdrop-blur-md dark:border-white/10 dark:bg-black/80">
+            {days.map((day, i) => (
+              <a
+                href={`#${dayIds[i]}`}
+                data-day={dayIds[i]}
+                class="day-link px-2.5 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-black/40 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/40 dark:hover:text-white"
+              >
+                {i + 1}
+              </a>
+            ))}
+          </nav>
 
-                  <div class="space-y-4">
-                    {day.groups.map((group) => (
-                      <div class="grid gap-4 rounded-[1.5rem] border border-black/10 bg-black/[0.02] p-4 dark:border-white/10 dark:bg-white/[0.03] md:grid-cols-[3.5rem_minmax(0,1fr)]">
-                        <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
-                          {group.label}
-                        </div>
-                        <div class="space-y-3">
-                          {group.blocks.map((block) => (
-                            <div class="flex flex-col gap-3 rounded-[1.15rem] border border-black/10 bg-white/70 p-4 dark:border-white/10 dark:bg-black/10 xl:flex-row xl:items-center xl:justify-between">
-                              <div>
-                                <div class="text-[11px] font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
-                                  {block.slotLabel}
-                                </div>
-                                <div class="mt-2">
-                                  <ExerciseLinks exercises={block.exercises} separator={block.separator} />
-                                </div>
-                              </div>
-                              <div class="text-sm font-semibold uppercase tracking-[0.18em] text-black/55 dark:text-white/55">
-                                {block.prescription}
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+          <ol>
+            {days.map((day, dayIndex) => (
+              <li
+                id={dayIds[dayIndex]}
+                class:list={["scroll-mt-28 py-8", dayIndex > 0 && "border-t border-black/10 dark:border-white/15"]}
+              >
+                <div class="flex items-baseline gap-4">
+                  <span class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+                    {day.dayLabel}
+                  </span>
+                  <span class="font-semibold text-black dark:text-white">
+                    {day.focus}
+                  </span>
                 </div>
+                {day.notes && (
+                  <p class="mt-2 text-sm leading-6 text-black/50 dark:text-white/50">
+                    {day.notes}
+                  </p>
+                )}
+
+                {day.groups.length > 0 && (
+                  <div class="mt-6 space-y-3">
+                    {day.groups.map((group, groupIdx) => {
+                      const isSuperset = group.blocks.length > 1
+                      return (
+                        <div class:list={[
+                          isSuperset && "border-l-2 border-l-black/15 dark:border-l-white/15",
+                          !isSuperset && "border-l-2 border-l-transparent",
+                        ]}>
+                          {group.blocks.map((block, blockIdx) => {
+                            const rx = parsePrescription(block.prescription)
+                            const globalIdx = day.groups
+                              .slice(0, groupIdx)
+                              .reduce((n, g) => n + g.blocks.length, 0) + blockIdx
+                            return (
+                              <div class:list={[
+                                "grid grid-cols-[2.5rem_1fr_3rem_1rem_7rem] items-baseline py-2.5 pl-3 pr-1 transition-colors duration-200 ease-in-out hover:bg-black/[0.025] dark:hover:bg-white/[0.035]",
+                                globalIdx % 2 === 1 && "bg-black/[0.015] dark:bg-white/[0.015]",
+                                blockIdx > 0 && "border-t border-black/[0.04] dark:border-white/[0.05]",
+                              ]}>
+                                <span class="text-xs font-semibold uppercase tracking-[0.15em] text-black/35 dark:text-white/35">
+                                  {block.slotLabel}
+                                </span>
+                                <span>
+                                  <ExerciseLinks exercises={block.exercises} separator={block.separator} />
+                                </span>
+                                {rx.sets ? (
+                                  <>
+                                    <span class="text-right font-mono text-xs text-black/35 dark:text-white/35">
+                                      {rx.sets}
+                                    </span>
+                                    <span class="text-center font-mono text-[10px] text-black/25 dark:text-white/25">
+                                      &times;
+                                    </span>
+                                    <span class="text-right font-mono text-xs tracking-wide text-black/50 dark:text-white/50">
+                                      {rx.reps}
+                                    </span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <span />
+                                    <span />
+                                    <span class="text-right font-mono text-xs tracking-wide text-black/50 dark:text-white/50">
+                                      {rx.reps}
+                                    </span>
+                                  </>
+                                )}
+                              </div>
+                            )
+                          })}
+                        </div>
+                      )
+                    })}
+                  </div>
+                )}
               </li>
             ))}
           </ol>
@@ -126,3 +179,37 @@ const days = plan.data.days.map((day) => ({
     </BottomLayout>
   </div>
 </PageLayout>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>("#day-nav .day-link")
+  const sections = [...links].map((link) =>
+    document.getElementById(link.dataset.day!)
+  ).filter(Boolean) as HTMLElement[]
+
+  const activeClass = "text-black dark:text-white"
+  const inactiveClass = "text-black/40 dark:text-white/40"
+
+  function setActive(id: string) {
+    links.forEach((link) => {
+      const isActive = link.dataset.day === id
+      link.classList.toggle("text-black", isActive)
+      link.classList.toggle("dark:text-white", isActive)
+      link.classList.toggle("text-black/40", !isActive)
+      link.classList.toggle("dark:text-white/40", !isActive)
+    })
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          setActive(entry.target.id)
+          break
+        }
+      }
+    },
+    { rootMargin: "-120px 0px -60% 0px", threshold: 0 }
+  )
+
+  sections.forEach((section) => observer.observe(section))
+</script>

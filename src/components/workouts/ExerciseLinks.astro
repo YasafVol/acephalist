@@ -11,19 +11,14 @@ const { exercises, separator } = Astro.props
 const separatorLabel = getSeparatorLabel(separator)
 ---
 
-<span class="inline-flex flex-wrap items-center gap-x-1 gap-y-2">
+<span class="inline-flex flex-wrap items-baseline gap-x-1.5">
   {exercises.map((exercise, index) => (
     <>
-      {index > 0 && separatorLabel && <span class="opacity-50">{separatorLabel.trim()}</span>}
+      {index > 0 && separatorLabel && <span class="text-xs text-black/30 dark:text-white/30">{separatorLabel.trim()}</span>}
       <a
         href={`/workouts/exercises/${exercise.slug}`}
-        class="group inline-flex items-center gap-1 rounded-full border border-black/10 bg-black/[0.03] px-2.5 py-1 text-sm text-black/80 transition-colors duration-300 ease-in-out hover:border-black/20 hover:bg-black/5 hover:text-black dark:border-white/15 dark:bg-white/[0.06] dark:text-white/80 dark:hover:border-white/30 dark:hover:bg-white/10 dark:hover:text-white"
-      >
-        <span>{exercise.data.title}</span>
-        <svg class="size-3 stroke-current opacity-60 transition-transform duration-300 ease-in-out group-hover:translate-x-0.5">
-          <use href="/ui.svg#link" />
-        </svg>
-      </a>
+        class="text-sm text-black/75 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/75 dark:hover:text-white"
+      >{exercise.data.title}</a>
     </>
   ))}
 </span>
