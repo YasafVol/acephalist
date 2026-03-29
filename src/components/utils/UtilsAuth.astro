@@ -1,0 +1,96 @@
+---
+const hostname = Astro.url.hostname
+const isLocalServer =
+  hostname === "localhost" || hostname === "127.0.0.1" || hostname === "::1"
+---
+
+<div class="mt-6 mb-6 p-4 border rounded-lg border-black/15 dark:border-white/20">
+  <div class="text-sm uppercase text-black/60 dark:text-white/60">
+    Utils access
+  </div>
+  <div class="mt-3 flex flex-wrap items-center gap-2">
+    {
+      isLocalServer ? (
+        <span class="text-sm text-black/60 dark:text-white/60">
+          Local server mode: utils enabled (auth bypassed).
+        </span>
+      ) : (
+        <>
+          <button
+            id="utils-signin"
+            type="button"
+            class="px-3 py-1 rounded-full text-sm border border-black/15 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/10 transition-colors duration-300 ease-in-out"
+          >
+            Sign in
+          </button>
+          <button
+            id="utils-signout"
+            type="button"
+            class="hidden px-3 py-1 rounded-full text-sm border border-black/15 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/10 transition-colors duration-300 ease-in-out"
+          >
+            Sign out
+          </button>
+          <span id="utils-user" class="text-sm text-black/60 dark:text-white/60">
+            Not signed in
+          </span>
+        </>
+      )
+    }
+  </div>
+</div>
+
+{
+  !isLocalServer && (
+    <>
+      <script
+        src="https://identity.netlify.com/v1/netlify-identity-widget.js"
+        defer
+      ></script>
+
+      <script is:inline>
+        const signInButton = document.getElementById("utils-signin")
+        const signOutButton = document.getElementById("utils-signout")
+        const userLabel = document.getElementById("utils-user")
+
+        function setUserLabel(text) {
+          if (userLabel) userLabel.textContent = text
+        }
+
+        function updateButtons(user) {
+          if (user) {
+            signInButton?.classList.add("hidden")
+            signOutButton?.classList.remove("hidden")
+            setUserLabel(user.email || "Signed in")
+            return
+          }
+
+          signOutButton?.classList.add("hidden")
+          signInButton?.classList.remove("hidden")
+          setUserLabel("Not signed in")
+        }
+
+        function initIdentity() {
+          if (!window.netlifyIdentity) {
+            setUserLabel("Identity not loaded")
+            return
+          }
+
+          const identity = window.netlifyIdentity
+          signInButton?.addEventListener("click", () => identity.open())
+          signOutButton?.addEventListener("click", () => identity.logout())
+
+          identity.on("init", (user) => updateButtons(user))
+          identity.on("login", (user) => updateButtons(user))
+          identity.on("logout", () => updateButtons(null))
+          identity.init()
+        }
+
+        if (window.netlifyIdentity) {
+          initIdentity()
+        } else {
+          window.addEventListener("load", initIdentity)
+        }
+      </script>
+    </>
+  )
+}

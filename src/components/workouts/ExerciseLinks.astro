@@ -1,0 +1,24 @@
+---
+import type { CollectionEntry } from "astro:content"
+import { getSeparatorLabel } from "@lib/workouts"
+
+type Props = {
+  exercises: CollectionEntry<"exercises">[]
+  separator: "single" | "slash" | "or"
+}
+
+const { exercises, separator } = Astro.props
+const separatorLabel = getSeparatorLabel(separator)
+---
+
+<span class="inline-flex flex-wrap items-baseline gap-x-1.5">
+  {exercises.map((exercise, index) => (
+    <>
+      {index > 0 && separatorLabel && <span class="text-xs text-black/30 dark:text-white/30">{separatorLabel.trim()}</span>}
+      <a
+        href={`/workouts/exercises/${exercise.slug}`}
+        class="text-sm text-black/75 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/75 dark:hover:text-white"
+      >{exercise.data.title}</a>
+    </>
+  ))}
+</span>

@@ -217,6 +217,267 @@ declare module 'astro:content' {
   data: InferEntrySchema<"blog">
 } & { render(): Render[".md"] };
 };
+"exercises": {
+"barbell-hip-thrust.md": {
+	id: "barbell-hip-thrust.md";
+  slug: "barbell-hip-thrust";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"barbell-shrug.md": {
+	id: "barbell-shrug.md";
+  slug: "barbell-shrug";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"bird-dog.md": {
+	id: "bird-dog.md";
+  slug: "bird-dog";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"bulgarian-split-squat.md": {
+	id: "bulgarian-split-squat.md";
+  slug: "bulgarian-split-squat";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"chest-supported-db-row.md": {
+	id: "chest-supported-db-row.md";
+  slug: "chest-supported-db-row";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"chin-tuck.md": {
+	id: "chin-tuck.md";
+  slug: "chin-tuck";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"close-grip-bench-press.md": {
+	id: "close-grip-bench-press.md";
+  slug: "close-grip-bench-press";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"db-bench-press.md": {
+	id: "db-bench-press.md";
+  slug: "db-bench-press";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"db-fly.md": {
+	id: "db-fly.md";
+  slug: "db-fly";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"db-hip-thrust.md": {
+	id: "db-hip-thrust.md";
+  slug: "db-hip-thrust";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"db-pullover.md": {
+	id: "db-pullover.md";
+  slug: "db-pullover";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"db-shrug.md": {
+	id: "db-shrug.md";
+  slug: "db-shrug";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"dead-bug.md": {
+	id: "dead-bug.md";
+  slug: "dead-bug";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"drag-curl.md": {
+	id: "drag-curl.md";
+  slug: "drag-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"ez-bar-curl.md": {
+	id: "ez-bar-curl.md";
+  slug: "ez-bar-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"forearm-extensor-work.md": {
+	id: "forearm-extensor-work.md";
+  slug: "forearm-extensor-work";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"forearm-flexor-work.md": {
+	id: "forearm-flexor-work.md";
+  slug: "forearm-flexor-work";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"french-curl.md": {
+	id: "french-curl.md";
+  slug: "french-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"hammer-curl.md": {
+	id: "hammer-curl.md";
+  slug: "hammer-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"incline-db-bench-press.md": {
+	id: "incline-db-bench-press.md";
+  slug: "incline-db-bench-press";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"incline-db-curl.md": {
+	id: "incline-db-curl.md";
+  slug: "incline-db-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"landmine-row.md": {
+	id: "landmine-row.md";
+  slug: "landmine-row";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"landmine-split-squat.md": {
+	id: "landmine-split-squat.md";
+  slug: "landmine-split-squat";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"landmine-squat.md": {
+	id: "landmine-squat.md";
+  slug: "landmine-squat";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"lateral-raise.md": {
+	id: "lateral-raise.md";
+  slug: "lateral-raise";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"neck-flexion-isometric.md": {
+	id: "neck-flexion-isometric.md";
+  slug: "neck-flexion-isometric";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"neck-side-flexion-isometric.md": {
+	id: "neck-side-flexion-isometric.md";
+  slug: "neck-side-flexion-isometric";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"one-arm-db-row-braced.md": {
+	id: "one-arm-db-row-braced.md";
+  slug: "one-arm-db-row-braced";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"overhead-triceps-extension.md": {
+	id: "overhead-triceps-extension.md";
+  slug: "overhead-triceps-extension";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"pull-ups.md": {
+	id: "pull-ups.md";
+  slug: "pull-ups";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"rear-delt-fly.md": {
+	id: "rear-delt-fly.md";
+  slug: "rear-delt-fly";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"reverse-lunge.md": {
+	id: "reverse-lunge.md";
+  slug: "reverse-lunge";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"side-plank.md": {
+	id: "side-plank.md";
+  slug: "side-plank";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"squeeze-press.md": {
+	id: "squeeze-press.md";
+  slug: "squeeze-press";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"standing-calf-raise.md": {
+	id: "standing-calf-raise.md";
+  slug: "standing-calf-raise";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"sumo-deadlift.md": {
+	id: "sumo-deadlift.md";
+  slug: "sumo-deadlift";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"walk.md": {
+	id: "walk.md";
+  slug: "walk";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+};
 "legal": {
 "privacy.md": {
 	id: "privacy.md";
@@ -305,6 +566,15 @@ declare module 'astro:content' {
   body: string;
   collection: "work";
   data: InferEntrySchema<"work">
+} & { render(): Render[".md"] };
+};
+"workoutPlans": {
+"foundation-split.md": {
+	id: "foundation-split.md";
+  slug: "foundation-split";
+  body: string;
+  collection: "workoutPlans";
+  data: InferEntrySchema<"workoutPlans">
 } & { render(): Render[".md"] };
 };
 

@@ -1,0 +1,179 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content"
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+
+export async function getStaticPaths() {
+  const exercises = await getCollection("exercises")
+
+  return exercises
+    .filter((exercise) => !exercise.data.draft)
+    .map((exercise) => ({
+      params: { slug: exercise.slug },
+      props: { exercise },
+    }))
+}
+
+type Props = {
+  exercise: CollectionEntry<"exercises">
+}
+
+const { exercise } = Astro.props
+const { Content } = await exercise.render()
+
+const hasAliases = exercise.data.aliases.length > 0
+const hasImages = exercise.data.images.length > 0
+const hasKeyPoints = exercise.data.keyPoints.length > 0
+const hasCues = exercise.data.trainingCues.length > 0
+const hasVideos = exercise.data.youtubeLinks.length > 0
+---
+
+<PageLayout title={exercise.data.title} description={exercise.data.summary}>
+  <div>
+    <TopLayout>
+      <section class="animate relative">
+        <a
+          href="/workouts"
+          class="group inline-flex items-center gap-2 border border-black/15 px-3 py-1.5 text-sm text-black/70 transition-all duration-300 ease-in-out hover:border-black/25 hover:text-black dark:border-white/15 dark:text-white/70 dark:hover:border-white/25 dark:hover:text-white"
+        >
+          <svg class="size-4 rotate-180 stroke-current transition-transform duration-300 ease-in-out group-hover:-translate-x-0.5">
+            <use href="/ui.svg#arrow-right" />
+          </svg>
+          Back to workouts
+        </a>
+
+        <div class="mt-8 max-w-3xl">
+          <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+            Exercise notes
+          </div>
+          <h1 class="mt-3 text-4xl font-semibold tracking-tight text-black dark:text-white md:text-5xl">
+            {exercise.data.title}
+          </h1>
+          {hasAliases && (
+            <div class="mt-2 text-sm text-black/40 dark:text-white/40">
+              Also: {exercise.data.aliases.join(", ")}
+            </div>
+          )}
+          <p class="mt-4 max-w-2xl text-base leading-7 text-black/70 dark:text-white/70 md:text-lg">
+            {exercise.data.summary}
+          </p>
+        </div>
+      </section>
+    </TopLayout>
+
+    <BottomLayout>
+      <div class="animate mx-auto max-w-4xl">
+        {/* Description */}
+        <section class="border-t border-black/10 py-8 dark:border-white/15">
+          <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+            Description
+          </div>
+          <article class="exercise-prose mt-4">
+            <Content />
+          </article>
+        </section>
+
+        {/* Images */}
+        <section class="border-t border-black/10 py-8 dark:border-white/15">
+          <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+            Images
+          </div>
+          {hasImages ? (
+            <div class="mt-5 grid gap-6 md:grid-cols-2">
+              {exercise.data.images.map((image) => (
+                <figure class="overflow-hidden border border-black/10 dark:border-white/10">
+                  <img src={image.src} alt={image.alt} class="w-full object-cover" />
+                  {image.caption && (
+                    <figcaption class="border-t border-black/10 px-4 py-2.5 text-sm text-black/50 dark:border-white/10 dark:text-white/50">
+                      {image.caption}
+                    </figcaption>
+                  )}
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <p class="mt-4 text-sm text-black/35 dark:text-white/35">
+              No reference images yet.
+            </p>
+          )}
+        </section>
+
+        {/* Key Points + Training Cues side by side */}
+        {(hasKeyPoints || hasCues) && (
+          <section class="grid gap-8 border-t border-black/10 py-8 dark:border-white/15 lg:grid-cols-2">
+            {hasKeyPoints && (
+              <div>
+                <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+                  Key points
+                </div>
+                <ul class="mt-4 space-y-0 divide-y divide-black/[0.06] dark:divide-white/[0.08]">
+                  {exercise.data.keyPoints.map((point) => (
+                    <li class="py-2.5 text-sm leading-6 text-black/75 dark:text-white/75">
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {hasCues && (
+              <div>
+                <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+                  Training cues
+                </div>
+                <ul class="mt-4 space-y-0 divide-y divide-black/[0.06] dark:divide-white/[0.08]">
+                  {exercise.data.trainingCues.map((cue) => (
+                    <li class="py-2.5 text-sm leading-6 text-black/75 dark:text-white/75">
+                      {cue}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
+        {/* YouTube videos */}
+        <section class="border-t border-black/10 py-8 dark:border-white/15">
+          <div class="text-[11px] font-semibold uppercase tracking-[0.25em] text-black/40 dark:text-white/40">
+            Videos
+          </div>
+          {hasVideos ? (
+            <ul class="mt-4 divide-y divide-black/[0.06] dark:divide-white/[0.08]">
+              {exercise.data.youtubeLinks.map((video) => (
+                <li>
+                  <a
+                    href={video.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    class="group flex items-center justify-between py-2.5 text-sm text-black/75 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/75 dark:hover:text-white"
+                  >
+                    <span>{video.label}</span>
+                    <svg class="size-4 stroke-current opacity-40 transition-all duration-300 ease-in-out group-hover:translate-x-0.5 group-hover:opacity-70">
+                      <use href="/ui.svg#arrow-right" />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="mt-4 text-sm text-black/35 dark:text-white/35">
+              No video references yet.
+            </p>
+          )}
+        </section>
+      </div>
+    </BottomLayout>
+  </div>
+</PageLayout>
+
+<style>
+  .exercise-prose {
+    @apply prose max-w-none text-black/75 dark:prose-invert dark:text-white/75;
+  }
+
+  .exercise-prose p {
+    @apply leading-7;
+  }
+</style>

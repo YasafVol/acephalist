@@ -1,0 +1,29 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+import UtilsAuth from "@components/utils/UtilsAuth.astro"
+import DrawEmbed from "@components/utils/DrawEmbed.astro"
+---
+
+<PageLayout
+  title="Draw"
+  description="Sketch diagrams with Excalidraw."
+>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        Draw
+      </h1>
+      <div class="mt-1">
+        An Excalidraw canvas for quick sketches and diagrams.
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <UtilsAuth />
+      <DrawEmbed />
+    </div>
+  </BottomLayout>
+</PageLayout>

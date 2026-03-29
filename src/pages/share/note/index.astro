@@ -1,0 +1,120 @@
+---
+import PageLayout from "@layouts/PageLayout.astro"
+import TopLayout from "@layouts/TopLayout.astro"
+import BottomLayout from "@layouts/BottomLayout.astro"
+---
+
+<PageLayout
+  title="Shared Note"
+  description="View a shared scratchpad note."
+  robots="noindex,nofollow"
+>
+  <TopLayout>
+    <div class="animate">
+      <h1 class="text-3xl font-semibold text-black dark:text-white mt-2">
+        Shared Note
+      </h1>
+      <div class="mt-1">
+        This link opens an unlisted scratchpad note.
+      </div>
+    </div>
+  </TopLayout>
+  <BottomLayout>
+    <div class="animate">
+      <div
+        id="share-status"
+        class="text-sm uppercase text-black/60 dark:text-white/60"
+      >
+        Loading shared note...
+      </div>
+      <div class="mt-4">
+        <h2
+          id="share-title"
+          class="text-xl font-semibold text-black dark:text-white"
+        ></h2>
+        <div
+          id="share-body"
+          class="mt-3 prose prose-neutral dark:prose-invert max-w-none text-black/80 dark:text-white/80"
+        ></div>
+      </div>
+    </div>
+  </BottomLayout>
+
+  <script is:inline>
+    const statusEl = document.getElementById("share-status")
+    const titleEl = document.getElementById("share-title")
+    const bodyEl = document.getElementById("share-body")
+
+    function setStatus(text) {
+      if (statusEl) statusEl.textContent = text
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;")
+    }
+
+    function formatInline(value) {
+      let out = escapeHtml(value)
+      out = out.replace(/`([^`]+?)`/g, "<code>$1</code>")
+      out = out.replace(/\*\*([^*]+?)\*\*/g, "<strong>$1</strong>")
+      out = out.replace(/\*([^*]+?)\*/g, "<em>$1</em>")
+      out = out.replace(/\[([^\]]+?)\]\(([^)]+?)\)/g, (_, text, href) => {
+        const isSafe = /^(https?:\/\/|mailto:|\/|#)/i.test(String(href).trim())
+        const url = isSafe ? escapeHtml(String(href).trim()) : "#"
+        return `<a href="${url}" rel="noopener noreferrer nofollow" target="_blank">${text}</a>`
+      })
+      return out
+    }
+
+    function markdownToHtml(markdown) {
+      const lines = String(markdown || "").replace(/\r\n/g, "\n").split("\n")
+      const html = []
+      for (const line of lines) {
+        const heading = line.match(/^(#{1,6})\s+(.+)$/)
+        if (heading) {
+          const level = heading[1].length
+          html.push(`<h${level}>${formatInline(heading[2])}</h${level}>`)
+          continue
+        }
+        if (line.trim().length === 0) {
+          html.push("")
+          continue
+        }
+        html.push(`<p>${formatInline(line)}</p>`)
+      }
+      return html.join("\n")
+    }
+
+    async function loadNote() {
+      const params = new URLSearchParams(window.location.search)
+      const token = params.get("share")
+
+      if (!token) {
+        setStatus("Missing share token.")
+        return
+      }
+
+      try {
+        const res = await fetch(`/api/notes-share?token=${encodeURIComponent(token)}`)
+        if (!res.ok) {
+          setStatus("Note not found or unavailable.")
+          return
+        }
+
+        const note = await res.json()
+        setStatus("Shared note")
+        if (titleEl) titleEl.textContent = note.title || "Untitled"
+        if (bodyEl) bodyEl.innerHTML = markdownToHtml(note.body || "")
+      } catch (err) {
+        setStatus("Failed to load note.")
+      }
+    }
+
+    loadNote()
+  </script>
+</PageLayout>
