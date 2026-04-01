@@ -6,26 +6,17 @@ date: "2024-03-17"
 
 ## About Me
 
-I am a **_software engineer_**, **_ui/ux designer_**, **_product planner_**, **_mentor_**, **_student_**, **_minimalist_**, **_eternal optimist_**, **_crypto enthusiast_** and **_sarcasm connoisseur_**.
 
-I love to both build and break things. I am motivated by challenging projects with self-guided research and dynamic problem solving. My true passion is crafting creative front end designs with unique takes on color, typography and motion.
+<blockquote class="border-l-4 border-black/25 dark:border-white/25 pl-4 italic my-4">
+<b>ACEPHALIST</b><br />
+<i>(obsolete) One who acknowledges no head or superior </i>
+</blockquote><br/>
 
-### During my career
+<p>I am a <b>Builder; A founder, product manager, people wrangler and librovore</b>.</p>
+<p>I love building; for the love of the game and for the win. My life is a constant Hegelian dialectic balancing act (thesis-antithesis-synthesis) between my ADHD expansionist interests and down-the-rabbit-hole obsession proclivity.</p>
 
-I have built products ranging from marketing and ecommerce websites to complex enterprise apps with focus on delivering fast, elegant code along with delightful user interfaces.
-
-### Now
-
-I currently work as a software engineer at StreamlineFS, where I do product planning, design and development.
-
-> "It's what I do, I drink, and I know things." - Tyrion Lannister
-
-## Professional Journey
-
-My career progression and professional experience.
-
----
-
-## Credits
-
-*Favicon source: [Phosphor Icons](https://phosphoricons.com/?q=not-member-of&weight=fill&size=96)*
+<p><br/>My Villain Origin Story</p>
+<p>My career has been an arc of going-to-Gemba (getting closer to the production floor). Moving from research, consulting (internal - external) and as a founder of several businesses.</p>
+<p><br/>Today</p>
+<p>I currently work as a product manager at Wix, where i am reimagining existing infrastructure, business and dev tool for the new Ai future and possibilities.</p>
+</article>
