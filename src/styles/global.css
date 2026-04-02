@@ -229,10 +229,6 @@ article img {
   @apply bg-white dark:bg-black;
 }
 
-#home-animation-controls [data-global-colors-button][data-active="true"] {
-  @apply bg-black text-white dark:bg-white dark:text-black;
-}
-
 /* Card transition */
 /* .fade-move-enter-active,
 .fade-move-exit-active {
