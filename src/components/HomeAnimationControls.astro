@@ -532,9 +532,10 @@
     });
 
     try {
-      setCollapsed(window.localStorage.getItem(HOME_ANIMATION_PANEL_STORAGE_KEY) === "1");
+      const savedState = window.localStorage.getItem(HOME_ANIMATION_PANEL_STORAGE_KEY);
+      setCollapsed(savedState === null ? true : savedState === "1");
     } catch {
-      setCollapsed(false);
+      setCollapsed(true);
     }
 
     return () => {
