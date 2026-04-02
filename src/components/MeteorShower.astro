@@ -16,27 +16,75 @@
 </div>
 
 <script>
-  function createMeteor () {
-  // create a meteor
-  let meteor = document.createElement("div");
-  meteor.setAttribute("class", "meteor");
-  meteor.style.left = Math.round(Math.random() * window.innerWidth) + "px";
-  meteor.style.top  = Math.round(Math.random() * window.innerHeight) + "px";
-  
-  // append the meteor to a random meteor shower (direction)
-  const showers = document.querySelectorAll(".shower");
-  if (showers.length > 0) {
-    const random = Math.floor(Math.random() * showers.length);
-    const shower = showers[random];
-    shower.append(meteor);
+  function getMeteorConfig() {
+    return window.__homeAnimation?.getConfig?.().meteor ?? {
+      enabled: true,
+      interval: 1500,
+      duration: 3,
+      lengthVh: 75,
+      randomColors: false,
+    };
   }
 
-  // remove the meteor after the animation duration
-  setTimeout(() => {
-    meteor.remove();
-  }, 3500);
-}
+  function randomBrightSkyColor() {
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = Math.floor(Math.random() * 18) + 82;
+    const lightness = Math.floor(Math.random() * 14) + 68;
+    return `hsl(${hue} ${saturation}% ${lightness}%)`;
+  }
 
-// Create meteors on interval on two (2) seconds
-setInterval(createMeteor, 1500);
+  function createMeteor () {
+    const config = getMeteorConfig();
+
+    if (!config.enabled) {
+      return;
+    }
+
+    const meteor = document.createElement("div");
+    meteor.setAttribute("class", "meteor");
+    meteor.style.left = `${Math.round(Math.random() * window.innerWidth)}px`;
+    meteor.style.top = `${Math.round(Math.random() * window.innerHeight)}px`;
+    meteor.style.setProperty("--meteor-duration", `${config.duration}s`);
+    meteor.style.setProperty("--meteor-length", `${config.lengthVh}vh`);
+
+    if (config.randomColors && document.documentElement.classList.contains("dark")) {
+      meteor.style.background = `linear-gradient(to bottom, ${randomBrightSkyColor()}, transparent)`;
+    }
+
+    const showers = document.querySelectorAll(".shower");
+    if (showers.length > 0) {
+      const random = Math.floor(Math.random() * showers.length);
+      const shower = showers[random];
+      shower.append(meteor);
+    }
+
+    setTimeout(() => {
+      meteor.remove();
+    }, Math.ceil(config.duration * 1000) + 500);
+  }
+
+  function startMeteorLoop() {
+    const config = getMeteorConfig();
+
+    window.clearInterval(window.__homeAnimationMeteorInterval);
+
+    if (!config.enabled) {
+      return;
+    }
+
+    window.__homeAnimationMeteorInterval = window.setInterval(createMeteor, config.interval);
+  }
+
+  window.__homeAnimationMeteorCleanup?.();
+
+  const unsubscribeMeteors = window.__homeAnimation?.subscribe?.(() => {
+    startMeteorLoop();
+  });
+
+  startMeteorLoop();
+
+  window.__homeAnimationMeteorCleanup = () => {
+    window.clearInterval(window.__homeAnimationMeteorInterval);
+    unsubscribeMeteors?.();
+  };
 </script>

@@ -86,15 +86,15 @@ article {
   }
 
   to {
-    transform: translateY(-2000px);
+    transform: translateY(var(--particle-travel-end, -2000px));
   }
 }
 
 /** styles for public /animation.js */
 .animate {
   opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1s ease, transform 1s ease;
+  transform: translateY(var(--reveal-offset, 50px));
+  transition: opacity var(--reveal-duration, 1000ms) ease, transform var(--reveal-duration, 1000ms) ease;
 }
 
 .animate.show {
@@ -121,6 +121,7 @@ article img {
 #twinkle-star.twinkle {
   @apply animate-twinkle;
   /* defined in tailwind.config */
+  animation-duration: var(--twinkle-duration, 2s);
 }
 
 
@@ -140,6 +141,8 @@ article img {
   /* defined in tailwind.config */
   @apply absolute top-1/2 left-1/2 w-px h-[75vh];
   @apply bg-gradient-to-b from-white to-transparent;
+  animation-duration: var(--meteor-duration, 3s);
+  height: var(--meteor-length, 75vh);
 }
 
 #meteors .shower.ur {
@@ -171,6 +174,63 @@ article img {
 
 .copy-svg {
   @apply w-full aspect-square text-white opacity-70 hover:opacity-90;
+}
+
+#home-animation-controls input[type="range"] {
+  @apply h-1.5 w-full cursor-pointer appearance-none rounded-full bg-black/10 dark:bg-white/10;
+}
+
+#home-animation-controls input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  @apply h-3.5 w-3.5 rounded-full border-0 bg-black shadow-[0_0_0_4px_rgba(255,255,255,0.55)] dark:bg-white dark:shadow-[0_0_0_4px_rgba(0,0,0,0.35)];
+}
+
+#home-animation-controls input[type="range"]::-moz-range-thumb {
+  @apply h-3.5 w-3.5 rounded-full border-0 bg-black dark:bg-white;
+}
+
+#home-animation-controls details summary::-webkit-details-marker {
+  display: none;
+}
+
+#home-animation-controls details[open] .caret-right {
+  display: none;
+}
+
+#home-animation-controls details[open] .caret-down {
+  display: block;
+}
+
+#home-animation-controls .sky-control-switch {
+  @apply relative inline-flex items-center;
+}
+
+#home-animation-controls .sky-control-switch-track {
+  @apply relative block rounded-full border border-black/15 bg-black/10 transition dark:border-white/15 dark:bg-white/10;
+  width: 2.5rem;
+  height: 1.25rem;
+}
+
+#home-animation-controls .sky-control-switch-knob {
+  @apply absolute rounded-full bg-black transition dark:bg-white;
+  left: 2px;
+  top: 2px;
+  width: calc(1.25rem - 6px);
+  height: calc(1.25rem - 6px);
+}
+
+#home-animation-controls .sky-control-switch[data-active="true"] .sky-control-switch-track {
+  @apply bg-black/85 dark:bg-white/85;
+}
+
+#home-animation-controls .sky-control-switch[data-active="true"] .sky-control-switch-knob {
+  transform: translateX(1.25rem);
+  @apply bg-white dark:bg-black;
+}
+
+#home-animation-controls [data-global-colors-button][data-active="true"] {
+  @apply bg-black text-white dark:bg-white dark:text-black;
 }
 
 /* Card transition */

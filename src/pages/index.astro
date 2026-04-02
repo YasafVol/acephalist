@@ -6,6 +6,7 @@ import StackCard from "@components/StackCard.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
+import HomeAnimationControls from "@components/HomeAnimationControls.astro"
 
 
 const posts = (await getCollection("blog"))
@@ -62,6 +63,158 @@ const stack = [
 ---
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
+  <script is:inline>
+    const HOME_ANIMATION_STORAGE_KEY = "acephalist-home-animation-config";
+
+    const HOME_ANIMATION_DEFAULTS = {
+      background: {
+        fieldSize: 2560,
+        density: {
+          small: 1000,
+          medium: 500,
+          large: 250,
+        },
+        size: {
+          small: 1,
+          medium: 1.5,
+          large: 2,
+        },
+        speed: {
+          small: 50,
+          medium: 100,
+          large: 150,
+        },
+        travel: 2000,
+      },
+      twinkle: {
+        enabled: true,
+        interval: 5000,
+        duration: 2,
+        randomColors: false,
+        topBandRatio: 0.33,
+        mobileMinSize: 8,
+        mobileMaxSize: 15,
+        desktopMinSize: 15,
+        desktopMaxSize: 30,
+      },
+      meteor: {
+        enabled: true,
+        interval: 1500,
+        duration: 3,
+        lengthVh: 75,
+        randomColors: false,
+      },
+      reveal: {
+        offset: 50,
+        duration: 1000,
+        stagger: 150,
+      },
+    };
+
+    function cloneHomeAnimationConfig(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function isHomeAnimationObject(value) {
+      return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+    }
+
+    function mergeHomeAnimationConfig(base, incoming) {
+      const next = cloneHomeAnimationConfig(base);
+
+      if (!isHomeAnimationObject(incoming)) {
+        return next;
+      }
+
+      for (const [key, value] of Object.entries(incoming)) {
+        if (isHomeAnimationObject(value) && isHomeAnimationObject(next[key])) {
+          next[key] = mergeHomeAnimationConfig(next[key], value);
+          continue;
+        }
+
+        next[key] = value;
+      }
+
+      return next;
+    }
+
+    function setHomeAnimationValue(target, path, value) {
+      const keys = path.split(".");
+      let cursor = target;
+
+      for (let index = 0; index < keys.length - 1; index += 1) {
+        cursor = cursor[keys[index]];
+      }
+
+      cursor[keys[keys.length - 1]] = value;
+    }
+
+    function createHomeAnimationStore() {
+      let config = cloneHomeAnimationConfig(HOME_ANIMATION_DEFAULTS);
+      const listeners = new Set();
+
+      try {
+        const saved = window.localStorage.getItem(HOME_ANIMATION_STORAGE_KEY);
+
+        if (saved) {
+          config = mergeHomeAnimationConfig(config, JSON.parse(saved));
+        }
+      } catch {
+        config = cloneHomeAnimationConfig(HOME_ANIMATION_DEFAULTS);
+      }
+
+      const api = {
+        defaults: cloneHomeAnimationConfig(HOME_ANIMATION_DEFAULTS),
+        getConfig() {
+          return cloneHomeAnimationConfig(config);
+        },
+        applyCssVars() {
+          const root = document.documentElement;
+          root.style.setProperty("--particle-travel-end", `-${config.background.travel}px`);
+          root.style.setProperty("--twinkle-duration", `${config.twinkle.duration}s`);
+          root.style.setProperty("--meteor-duration", `${config.meteor.duration}s`);
+          root.style.setProperty("--meteor-length", `${config.meteor.lengthVh}vh`);
+          root.style.setProperty("--reveal-offset", `${config.reveal.offset}px`);
+          root.style.setProperty("--reveal-duration", `${config.reveal.duration}ms`);
+        },
+        notify() {
+          const snapshot = api.getConfig();
+          listeners.forEach((listener) => listener(snapshot));
+        },
+        persist() {
+          try {
+            window.localStorage.setItem(HOME_ANIMATION_STORAGE_KEY, JSON.stringify(config));
+          } catch {}
+        },
+        update(path, value) {
+          setHomeAnimationValue(config, path, value);
+          api.persist();
+          api.applyCssVars();
+          api.notify();
+        },
+        reset() {
+          config = cloneHomeAnimationConfig(api.defaults);
+          api.persist();
+          api.applyCssVars();
+          api.notify();
+        },
+        subscribe(listener) {
+          listeners.add(listener);
+          listener(api.getConfig());
+          return () => listeners.delete(listener);
+        },
+      };
+
+      api.applyCssVars();
+      return api;
+    }
+
+    if (!window.__homeAnimation) {
+      window.__homeAnimation = createHomeAnimationStore();
+    } else {
+      window.__homeAnimation.applyCssVars();
+    }
+  </script>
 
   <!-- Light Mode: Particles -->
   <div class='absolute inset-0 block dark:hidden'>
@@ -86,6 +239,7 @@ const stack = [
   </div>
 
   <script is:inline src="/js/bg.js"></script>
+  <HomeAnimationControls />
 
   <!-- HERO -->
   <section class="relative h-screen w-full">
@@ -106,7 +260,7 @@ const stack = [
             Yasaf
           </p>
           <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
-            Currently designing products for humans.
+            Currently designing products for humans who fail the turing test.
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
             <a href='/blog' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>

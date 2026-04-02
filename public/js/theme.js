@@ -26,6 +26,7 @@ function changeTheme() {
   window.getComputedStyle(css).opacity
   document.head.removeChild(css)
   localStorage.theme = theme
+  window.dispatchEvent(new CustomEvent("acephalist:theme-change", { detail: { theme } }))
 }
 
 function preloadTheme() {
@@ -48,7 +49,11 @@ function preloadTheme() {
   }
 
   localStorage.theme = theme
+  window.dispatchEvent(new CustomEvent("acephalist:theme-change", { detail: { theme } }))
 }
+
+window.changeTheme = changeTheme
+window.preloadTheme = preloadTheme
 
 window.onload = () => {
   function initializeThemeButtons() {

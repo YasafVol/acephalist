@@ -1,0 +1,553 @@
+<div
+  id="home-animation-controls"
+  class="fixed bottom-4 right-4 z-50 w-[min(24rem,calc(100vw-2rem))] rounded-[1.5rem] border border-black/10 bg-white/80 text-black shadow-[0_24px_80px_rgba(15,23,42,0.16)] backdrop-blur-xl transition-all duration-300 dark:border-white/15 dark:bg-neutral-950/80 dark:text-white"
+>
+  <div class="flex items-center justify-between border-b border-black/10 px-4 py-3 dark:border-white/10">
+    <div>
+      <p class="text-sm font-semibold">Sky Control</p>
+    </div>
+    <div class="flex items-center gap-2">
+      <button
+        type="button"
+        data-action="toggle-theme"
+        class="flex size-10 items-center justify-center rounded-full border border-black/10 transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+        aria-label="Toggle light and dark theme"
+        title="Toggle light and dark theme"
+      >
+        <svg class="size-5 block dark:hidden stroke-current" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+          <use href="/ui.svg#sun"></use>
+        </svg>
+        <svg class="size-5 hidden dark:block stroke-current" viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+          <use href="/ui.svg#moon"></use>
+        </svg>
+      </button>
+      <button
+        type="button"
+        data-action="toggle-colors"
+        data-global-colors-button
+        class="flex size-10 items-center justify-center rounded-full border border-black/10 transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+        aria-label="Toggle color and monochrome mode"
+        title="Toggle color and monochrome mode"
+      >
+        <svg data-color-icon="palette" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-5 fill-current">
+          <path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"></path>
+        </svg>
+        <svg data-color-icon="yinyang" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="hidden size-5 fill-current">
+          <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM40,128a88.1,88.1,0,0,1,88-88,40,40,0,0,1,0,80A56,56,0,0,0,77.39,200,88,88,0,0,1,40,128Zm88,88a40,40,0,0,1,0-80,56,56,0,0,0,50.61-79.95A88,88,0,0,1,128,216Zm12-40a12,12,0,1,1-12-12A12,12,0,0,1,140,176ZM116,80a12,12,0,1,1,12,12A12,12,0,0,1,116,80Z"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        data-action="replay"
+        class="flex size-10 items-center justify-center rounded-full border border-black/10 transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+        aria-label="Replay reveal animation"
+        title="Replay reveal animation"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-5 fill-current">
+          <path d="M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4L184.81,71.64l-.25-.24a80,80,0,1,0-1.67,114.78,8,8,0,0,1,11,11.63A95.44,95.44,0,0,1,128,224h-1.32A96,96,0,1,1,195.75,60L224,85.8V56a8,8,0,1,1,16,0Z"></path>
+        </svg>
+      </button>
+      <button
+        type="button"
+        data-action="collapse"
+        class="flex size-10 items-center justify-center rounded-full border border-black/10 transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+        aria-label="Hide Sky Control"
+        title="Hide Sky Control"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-5 fill-current">
+          <path d="M228,175a8,8,0,0,1-10.92-3l-19-33.2A123.23,123.23,0,0,1,162,155.46l5.87,35.22a8,8,0,0,1-6.58,9.21A8.4,8.4,0,0,1,160,200a8,8,0,0,1-7.88-6.69l-5.77-34.58a133.06,133.06,0,0,1-36.68,0l-5.77,34.58A8,8,0,0,1,96,200a8.4,8.4,0,0,1-1.32-.11,8,8,0,0,1-6.58-9.21L94,155.46a123.23,123.23,0,0,1-36.06-16.69L39,172A8,8,0,1,1,25.06,164l20-35a153.47,153.47,0,0,1-19.3-20A8,8,0,1,1,38.22,99c16.6,20.54,45.64,45,89.78,45s73.18-24.49,89.78-45A8,8,0,1,1,230.22,109a153.47,153.47,0,0,1-19.3,20l20,35A8,8,0,0,1,228,175Z"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div data-panel-body class="max-h-[70vh] space-y-4 overflow-y-auto px-4 pb-4 pt-3">
+    <details open class="rounded-2xl border border-black/8 bg-black/[0.025] p-3 dark:border-white/10 dark:bg-white/[0.03]">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+        <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] opacity-70">
+          <span class="sky-control-caret">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-right size-3 fill-current">
+              <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-down hidden size-3 fill-current">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </span>
+          <span>Background</span>
+        </span>
+      </summary>
+      <div class="mt-3 space-y-3">
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Near density</span>
+            <span data-output-for="background.density.small"></span>
+          </div>
+          <input data-path="background.density.small" type="range" min="0" max="2000" step="25" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Mid density</span>
+            <span data-output-for="background.density.medium"></span>
+          </div>
+          <input data-path="background.density.medium" type="range" min="0" max="1200" step="25" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Far density</span>
+            <span data-output-for="background.density.large"></span>
+          </div>
+          <input data-path="background.density.large" type="range" min="0" max="800" step="10" />
+        </label>
+        <label class="block" data-visible-in="light">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Near drift</span>
+            <span data-output-for="background.speed.small"></span>
+          </div>
+          <input data-path="background.speed.small" data-unit="s" type="range" min="10" max="160" step="5" />
+        </label>
+        <label class="block" data-visible-in="light">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Mid drift</span>
+            <span data-output-for="background.speed.medium"></span>
+          </div>
+          <input data-path="background.speed.medium" data-unit="s" type="range" min="20" max="220" step="5" />
+        </label>
+        <label class="block" data-visible-in="light">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Far drift</span>
+            <span data-output-for="background.speed.large"></span>
+          </div>
+          <input data-path="background.speed.large" data-unit="s" type="range" min="30" max="300" step="5" />
+        </label>
+        <label class="block" data-visible-in="light">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Travel distance</span>
+            <span data-output-for="background.travel"></span>
+          </div>
+          <input data-path="background.travel" data-unit="px" type="range" min="250" max="4000" step="50" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Field spread</span>
+            <span data-output-for="background.fieldSize"></span>
+          </div>
+          <input data-path="background.fieldSize" data-unit="px" type="range" min="800" max="4800" step="80" />
+        </label>
+      </div>
+    </details>
+
+    <details open data-visible-in="dark" data-enabled-path="twinkle.enabled" class="rounded-2xl border border-black/8 bg-black/[0.025] p-3 dark:border-white/10 dark:bg-white/[0.03]">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+        <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] opacity-70">
+          <span class="sky-control-caret">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-right size-3 fill-current">
+              <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-down hidden size-3 fill-current">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </span>
+          <span>Twinkles</span>
+        </span>
+        <button
+          type="button"
+          data-summary-control
+          data-action="toggle-enabled"
+          data-enabled-toggle-path="twinkle.enabled"
+          class="sky-control-switch"
+          aria-label="Enable twinkles"
+          aria-pressed="true"
+        >
+          <span class="sky-control-switch-track">
+            <span class="sky-control-switch-knob"></span>
+          </span>
+        </button>
+      </summary>
+      <div class="mt-3 space-y-3">
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Spawn interval</span>
+            <span data-output-for="twinkle.interval"></span>
+          </div>
+          <input data-path="twinkle.interval" data-unit="ms" type="range" min="500" max="10000" step="100" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Duration</span>
+            <span data-output-for="twinkle.duration"></span>
+          </div>
+          <input data-path="twinkle.duration" data-unit="s" type="range" min="0.5" max="8" step="0.1" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Sky coverage</span>
+            <span data-output-for="twinkle.topBandRatio"></span>
+          </div>
+          <input data-path="twinkle.topBandRatio" data-format="percent" type="range" min="0.1" max="1" step="0.05" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Mobile min size</span>
+            <span data-output-for="twinkle.mobileMinSize"></span>
+          </div>
+          <input data-path="twinkle.mobileMinSize" data-unit="px" type="range" min="4" max="24" step="1" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Mobile max size</span>
+            <span data-output-for="twinkle.mobileMaxSize"></span>
+          </div>
+          <input data-path="twinkle.mobileMaxSize" data-unit="px" type="range" min="6" max="36" step="1" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Desktop min size</span>
+            <span data-output-for="twinkle.desktopMinSize"></span>
+          </div>
+          <input data-path="twinkle.desktopMinSize" data-unit="px" type="range" min="8" max="40" step="1" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Desktop max size</span>
+            <span data-output-for="twinkle.desktopMaxSize"></span>
+          </div>
+          <input data-path="twinkle.desktopMaxSize" data-unit="px" type="range" min="10" max="72" step="1" />
+        </label>
+      </div>
+    </details>
+
+    <details open data-visible-in="dark" data-enabled-path="meteor.enabled" class="rounded-2xl border border-black/8 bg-black/[0.025] p-3 dark:border-white/10 dark:bg-white/[0.03]">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+        <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] opacity-70">
+          <span class="sky-control-caret">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-right size-3 fill-current">
+              <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-down hidden size-3 fill-current">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </span>
+          <span>Meteors</span>
+        </span>
+        <button
+          type="button"
+          data-summary-control
+          data-action="toggle-enabled"
+          data-enabled-toggle-path="meteor.enabled"
+          class="sky-control-switch"
+          aria-label="Enable meteors"
+          aria-pressed="true"
+        >
+          <span class="sky-control-switch-track">
+            <span class="sky-control-switch-knob"></span>
+          </span>
+        </button>
+      </summary>
+      <div class="mt-3 space-y-3">
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Spawn interval</span>
+            <span data-output-for="meteor.interval"></span>
+          </div>
+          <input data-path="meteor.interval" data-unit="ms" type="range" min="250" max="4000" step="50" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Duration</span>
+            <span data-output-for="meteor.duration"></span>
+          </div>
+          <input data-path="meteor.duration" data-unit="s" type="range" min="0.5" max="8" step="0.1" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Trail length</span>
+            <span data-output-for="meteor.lengthVh"></span>
+          </div>
+          <input data-path="meteor.lengthVh" data-unit="vh" type="range" min="10" max="100" step="1" />
+        </label>
+      </div>
+    </details>
+
+    <details class="rounded-2xl border border-black/8 bg-black/[0.025] p-3 dark:border-white/10 dark:bg-white/[0.03]">
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-3">
+        <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] opacity-70">
+          <span class="sky-control-caret">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-right size-3 fill-current">
+              <path d="M181.66,133.66l-80,80a8,8,0,0,1-11.32-11.32L164.69,128,90.34,53.66a8,8,0,0,1,11.32-11.32l80,80A8,8,0,0,1,181.66,133.66Z"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="caret-down hidden size-3 fill-current">
+              <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+            </svg>
+          </span>
+          <span>Reveal</span>
+        </span>
+      </summary>
+      <div class="mt-3 space-y-3">
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Start offset</span>
+            <span data-output-for="reveal.offset"></span>
+          </div>
+          <input data-path="reveal.offset" data-unit="px" type="range" min="0" max="120" step="2" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Fade duration</span>
+            <span data-output-for="reveal.duration"></span>
+          </div>
+          <input data-path="reveal.duration" data-unit="ms" type="range" min="100" max="2500" step="50" />
+        </label>
+        <label class="block">
+          <div class="mb-1 flex items-center justify-between text-xs">
+            <span>Stagger</span>
+            <span data-output-for="reveal.stagger"></span>
+          </div>
+          <input data-path="reveal.stagger" data-unit="ms" type="range" min="0" max="600" step="10" />
+        </label>
+      </div>
+    </details>
+
+    <div class="flex items-center justify-between gap-3 pt-1">
+      <p class="text-[0.72rem] leading-5 opacity-60">Changes apply live and persist in your browser until reset.</p>
+      <button
+        type="button"
+        data-action="reset"
+        class="rounded-full border border-black/10 px-3 py-1 text-[0.7rem] font-medium uppercase tracking-[0.18em] transition hover:bg-black/5 dark:border-white/15 dark:hover:bg-white/10"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+</div>
+
+<button
+  id="home-animation-toggle"
+  type="button"
+  class="fixed bottom-4 right-4 z-50 hidden items-center gap-2 rounded-full border border-black/10 bg-white/85 px-4 py-3 text-sm font-semibold text-black shadow-[0_20px_60px_rgba(15,23,42,0.18)] backdrop-blur-xl transition hover:-translate-y-0.5 hover:bg-white dark:border-white/15 dark:bg-neutral-950/85 dark:text-white dark:hover:bg-neutral-900"
+  aria-label="Sky Control"
+  title="Sky Control"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="size-6 fill-current">
+    <path d="M247.31,124.76c-.35-.79-8.82-19.58-27.65-38.41C194.57,61.26,162.88,48,128,48S61.43,61.26,36.34,86.35C17.51,105.18,9,124,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208s66.57-13.26,91.66-38.34c18.83-18.83,27.3-37.61,27.65-38.4A8,8,0,0,0,247.31,124.76ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.47,133.47,0,0,1,25,128,133.33,133.33,0,0,1,48.07,97.25C70.33,75.19,97.22,64,128,64s57.67,11.19,79.93,33.25A133.46,133.46,0,0,1,231.05,128C223.84,141.46,192.43,192,128,192Zm0-112a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Z"></path>
+  </svg>
+  <span>Sky Control</span>
+</button>
+
+<script is:inline>
+  const HOME_ANIMATION_PANEL_STORAGE_KEY = "acephalist-home-animation-panel-collapsed";
+
+  function readHomeAnimationPath(source, path) {
+    return path.split(".").reduce((value, key) => value?.[key], source);
+  }
+
+  function getHomeAnimationTheme() {
+    return document.documentElement.classList.contains("dark") ? "dark" : "light";
+  }
+
+  function formatHomeAnimationValue(input, value) {
+    if (input.type === "checkbox") {
+      return value ? "On" : "Off";
+    }
+
+    if (input.dataset.format === "percent") {
+      return `${Math.round(Number(value) * 100)}%`;
+    }
+
+    if (input.dataset.unit) {
+      return `${value}${input.dataset.unit}`;
+    }
+
+    return `${value}`;
+  }
+
+  function mountHomeAnimationPanel() {
+    const panel = document.getElementById("home-animation-controls");
+    const openButton = document.getElementById("home-animation-toggle");
+    const store = window.__homeAnimation;
+
+    if (!panel || !openButton || !store) {
+      return () => {};
+    }
+
+    const inputs = [...panel.querySelectorAll("[data-path]")];
+    const outputNodes = [...panel.querySelectorAll("[data-output-for]")];
+    const themeScopedNodes = [...panel.querySelectorAll("[data-visible-in]")];
+    const detailsSections = [...panel.querySelectorAll("details")];
+    const enabledSections = [...panel.querySelectorAll("details[data-enabled-path]")];
+    const globalColorsButton = panel.querySelector("[data-global-colors-button]");
+    const enabledToggleButtons = [...panel.querySelectorAll("[data-enabled-toggle-path]")];
+
+    const syncThemeVisibility = () => {
+      const theme = getHomeAnimationTheme();
+
+      themeScopedNodes.forEach((node) => {
+        const visibleIn = node.dataset.visibleIn?.split(",").map((item) => item.trim()) ?? [];
+        node.classList.toggle("hidden", !visibleIn.includes(theme));
+      });
+    };
+
+    const setCollapsed = (collapsed) => {
+      panel.classList.toggle("hidden", collapsed);
+      openButton.classList.toggle("hidden", !collapsed);
+      openButton.classList.toggle("flex", collapsed);
+
+      try {
+        window.localStorage.setItem(HOME_ANIMATION_PANEL_STORAGE_KEY, collapsed ? "1" : "0");
+      } catch {}
+    };
+
+    const render = (config) => {
+      inputs.forEach((input) => {
+        const value = readHomeAnimationPath(config, input.dataset.path);
+
+        if (input.type === "checkbox") {
+          input.checked = Boolean(value);
+        } else {
+          input.value = `${value}`;
+        }
+      });
+
+      outputNodes.forEach((outputNode) => {
+        const path = outputNode.dataset.outputFor;
+        const input = panel.querySelector(`[data-path="${path}"]`);
+        const value = readHomeAnimationPath(config, path);
+
+        if (!input) {
+          return;
+        }
+
+        outputNode.textContent = formatHomeAnimationValue(input, value);
+      });
+
+      enabledToggleButtons.forEach((button) => {
+        const enabled = Boolean(readHomeAnimationPath(config, button.dataset.enabledTogglePath));
+        button.dataset.active = enabled ? "true" : "false";
+        button.setAttribute("aria-pressed", enabled ? "true" : "false");
+      });
+
+      enabledSections.forEach((section) => {
+        const enabled = Boolean(readHomeAnimationPath(config, section.dataset.enabledPath));
+        const manualState = section.dataset.manualState;
+
+        if (!enabled && manualState !== "open") {
+          section.open = false;
+        } else if (enabled && !manualState) {
+          section.open = true;
+        }
+      });
+
+      if (globalColorsButton instanceof HTMLButtonElement) {
+        const colorsEnabled = Boolean(config.twinkle.randomColors && config.meteor.randomColors);
+        globalColorsButton.dataset.active = colorsEnabled ? "true" : "false";
+        globalColorsButton.setAttribute("aria-pressed", colorsEnabled ? "true" : "false");
+        const paletteIcon = globalColorsButton.querySelector('[data-color-icon="palette"]');
+        const yinYangIcon = globalColorsButton.querySelector('[data-color-icon="yinyang"]');
+        paletteIcon?.classList.toggle("hidden", !colorsEnabled);
+        yinYangIcon?.classList.toggle("hidden", colorsEnabled);
+      }
+    };
+
+    const unsubscribe = store.subscribe(render);
+    syncThemeVisibility();
+
+    const onInput = (event) => {
+      const target = event.target;
+
+      if (!(target instanceof HTMLInputElement) || !target.dataset.path) {
+        return;
+      }
+
+      const nextValue = target.type === "checkbox" ? target.checked : Number(target.value);
+      store.update(target.dataset.path, nextValue);
+    };
+
+    const onPanelClick = (event) => {
+      const button = event.target.closest("[data-action]");
+
+      if (!(button instanceof HTMLButtonElement)) {
+        return;
+      }
+
+      const action = button.dataset.action;
+
+      if (action === "collapse") {
+        setCollapsed(true);
+      }
+
+      if (action === "replay") {
+        window.__homeAnimationAnimate?.replay?.();
+      }
+
+      if (action === "reset") {
+        store.reset();
+        window.__homeAnimationAnimate?.replay?.();
+      }
+
+      if (action === "toggle-theme") {
+        window.changeTheme?.();
+      }
+
+      if (action === "toggle-colors") {
+        const config = store.getConfig();
+        const nextValue = !(config.twinkle.randomColors && config.meteor.randomColors);
+        store.update("twinkle.randomColors", nextValue);
+        store.update("meteor.randomColors", nextValue);
+      }
+
+      if (action === "toggle-enabled") {
+        const path = button.dataset.enabledTogglePath;
+
+        if (path) {
+          const currentValue = Boolean(readHomeAnimationPath(store.getConfig(), path));
+          store.update(path, !currentValue);
+        }
+      }
+    };
+
+    const onOpenClick = () => setCollapsed(false);
+    const onSummaryClick = (event) => {
+      if (event.target.closest("[data-summary-control]")) {
+        event.preventDefault();
+      }
+    };
+    const onToggle = (event) => {
+      const detail = event.target;
+
+      if (!(detail instanceof HTMLDetailsElement)) {
+        return;
+      }
+
+      detail.dataset.manualState = detail.open ? "open" : "closed";
+    };
+    const themeObserver = new MutationObserver(() => syncThemeVisibility());
+
+    panel.addEventListener("input", onInput);
+    panel.addEventListener("click", onPanelClick);
+    panel.addEventListener("click", onSummaryClick, true);
+    openButton.addEventListener("click", onOpenClick);
+    detailsSections.forEach((detail) => detail.addEventListener("toggle", onToggle));
+    themeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    try {
+      setCollapsed(window.localStorage.getItem(HOME_ANIMATION_PANEL_STORAGE_KEY) === "1");
+    } catch {
+      setCollapsed(false);
+    }
+
+    return () => {
+      unsubscribe?.();
+      panel.removeEventListener("input", onInput);
+      panel.removeEventListener("click", onPanelClick);
+      panel.removeEventListener("click", onSummaryClick, true);
+      openButton.removeEventListener("click", onOpenClick);
+      detailsSections.forEach((detail) => detail.removeEventListener("toggle", onToggle));
+      themeObserver.disconnect();
+    };
+  }
+
+  window.__homeAnimationPanelCleanup?.();
+  window.__homeAnimationPanelCleanup = mountHomeAnimationPanel();
+</script>

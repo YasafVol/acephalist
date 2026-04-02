@@ -9,13 +9,12 @@
 
 <svg 
   id="twinkle-star" 
-  class="template" 
   width="149" 
   height="149" 
   viewBox="0 0 149 149" 
   fill="none" 
   xmlns="http://www.w3.org/2000/svg"
-  class="absolute left-full animate-twinkle"
+  class="template absolute left-full animate-twinkle"
 >
   <circle cx="74" cy="74" r="11" fill="white"/>
   <rect y="141.421" width="200" height="10" transform="rotate(-45 0 141.421)" fill="url(#paint0_linear_4_2)"/>
@@ -37,26 +36,132 @@
 </svg>
 
 <script is:inline>
-  // Generate a twinkle star and append it to the galaxy, remove it after animation.
-  function generateTwinkleStar() {
-    const twinkleStarTemplate = document.getElementById("twinkle-star")
-    if (!twinkleStarTemplate) { return; }
-    // Clone the twinkle star template and set its attributes.
-    const twinkleStar = twinkleStarTemplate.cloneNode(true);
-    twinkleStar.style.position = "absolute";
-    twinkleStar.style.left = Math.floor(Math.random() * window.innerWidth) + "px";
-    twinkleStar.style.top = Math.floor(Math.random() * (window.innerHeight/3)) + "px";
-    twinkleStar.style.width = window.innerWidth < 768 ? Math.floor(Math.random() * (15 - 7.5 + 1) + 7.5) : Math.floor(Math.random() * (30 - 15 + 1) + 15) + "px";
-    twinkleStar.style.height = twinkleStar.style.width;
-    twinkleStar.classList.add("twinkle");
-    document.getElementById("galaxy").appendChild(twinkleStar);
-
-    // Remove the twinkle star after the animation is completed.
-    setTimeout(() => {
-      twinkleStar.remove();
-    }, 2500);
+  function getTwinkleConfig() {
+    return window.__homeAnimation?.getConfig?.().twinkle ?? {
+      enabled: true,
+      interval: 5000,
+      duration: 2,
+      randomColors: false,
+      topBandRatio: 0.33,
+      mobileMinSize: 8,
+      mobileMaxSize: 15,
+      desktopMinSize: 15,
+      desktopMaxSize: 30,
+    };
   }
 
-  setInterval(generateTwinkleStar, 5000);
+  function randomInRange(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function randomBrightSkyColor() {
+    const hue = Math.floor(Math.random() * 360);
+    const saturation = Math.floor(randomInRange(82, 100));
+    const lightness = Math.floor(randomInRange(68, 82));
+    return `hsl(${hue} ${saturation}% ${lightness}%)`;
+  }
+
+  function applyTwinkleColor(twinkleStar, color) {
+    const circle = twinkleStar.querySelector("circle");
+    const gradientStops = twinkleStar.querySelectorAll("stop");
+
+    if (circle) {
+      circle.setAttribute("fill", color);
+    }
+
+    if (gradientStops[0]) {
+      gradientStops[0].setAttribute("stop-color", "transparent");
+    }
+
+    if (gradientStops[1]) {
+      gradientStops[1].setAttribute("stop-color", color);
+    }
+
+    if (gradientStops[2]) {
+      gradientStops[2].setAttribute("stop-color", color);
+    }
+
+    if (gradientStops[3]) {
+      gradientStops[3].setAttribute("stop-color", "transparent");
+    }
+
+    if (gradientStops[4]) {
+      gradientStops[4].setAttribute("stop-color", "transparent");
+    }
+
+    if (gradientStops[5]) {
+      gradientStops[5].setAttribute("stop-color", color);
+    }
+
+    if (gradientStops[6]) {
+      gradientStops[6].setAttribute("stop-color", color);
+    }
+
+    if (gradientStops[7]) {
+      gradientStops[7].setAttribute("stop-color", "transparent");
+    }
+  }
+
+  function generateTwinkleStar() {
+    const config = getTwinkleConfig();
+    const twinkleStarTemplate = document.getElementById("twinkle-star");
+    const galaxy = document.getElementById("galaxy");
+
+    if (!config.enabled || !galaxy) {
+      return;
+    }
+
+    if (!twinkleStarTemplate) { return; }
+
+    const twinkleStar = twinkleStarTemplate.cloneNode(true);
+    const isMobile = window.innerWidth < 768;
+    const minSize = isMobile ? config.mobileMinSize : config.desktopMinSize;
+    const maxSize = isMobile ? config.mobileMaxSize : config.desktopMaxSize;
+    const size = randomInRange(Math.min(minSize, maxSize), Math.max(minSize, maxSize));
+
+    twinkleStar.removeAttribute("id");
+    twinkleStar.style.position = "absolute";
+    twinkleStar.style.left = `${Math.floor(Math.random() * window.innerWidth)}px`;
+    twinkleStar.style.top = `${Math.floor(Math.random() * (window.innerHeight * config.topBandRatio))}px`;
+    twinkleStar.style.width = `${size}px`;
+    twinkleStar.style.height = twinkleStar.style.width;
+    twinkleStar.style.setProperty("--twinkle-duration", `${config.duration}s`);
+    twinkleStar.classList.add("twinkle");
+
+    if (config.randomColors && document.documentElement.classList.contains("dark")) {
+      applyTwinkleColor(twinkleStar, randomBrightSkyColor());
+    }
+
+    galaxy.appendChild(twinkleStar);
+
+    setTimeout(() => {
+      twinkleStar.remove();
+    }, Math.ceil(config.duration * 1000) + 400);
+  }
+
+  function startTwinkleLoop() {
+    const config = getTwinkleConfig();
+
+    window.clearInterval(window.__homeAnimationTwinkleInterval);
+
+    if (!config.enabled) {
+      return;
+    }
+
+    window.__homeAnimationTwinkleInterval = window.setInterval(generateTwinkleStar, config.interval);
+  }
+
+  window.__homeAnimationTwinkleCleanup?.();
+
+  const unsubscribeTwinkles = window.__homeAnimation?.subscribe?.(() => {
+    startTwinkleLoop();
+  });
+
+  startTwinkleLoop();
+
+  window.__homeAnimationTwinkleCleanup = () => {
+    window.clearInterval(window.__homeAnimationTwinkleInterval);
+    unsubscribeTwinkles?.();
+  };
 </script>
   
