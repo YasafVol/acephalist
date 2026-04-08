@@ -50,6 +50,10 @@ function parsePrescription(rx: string) {
 const dayIds = days.map((day) =>
   day.dayLabel.toLowerCase().replace(/\s+/g, "-")
 )
+const rationalePreview = plan.body
+  .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+  .replace(/[*_`>#]/g, "")
+  .trim()
 
 ---
 
@@ -80,8 +84,13 @@ const dayIds = days.map((day) =>
 
           {plan.body.trim() && (
             <details class="mt-6 border-t border-black/10 pt-4 dark:border-white/15">
-              <summary class="cursor-pointer list-none text-sm font-semibold uppercase tracking-[0.18em] text-black/55 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/55 dark:hover:text-white">
-                Rationale
+              <summary class="cursor-pointer list-none">
+                <div class="text-sm font-semibold uppercase tracking-[0.18em] text-black/55 transition-colors duration-300 ease-in-out hover:text-black dark:text-white/55 dark:hover:text-white">
+                  Rationale
+                </div>
+                <p class="mt-2 line-clamp-2 max-w-2xl text-sm leading-6 text-black/60 dark:text-white/60">
+                  {rationalePreview}
+                </p>
               </summary>
               <article class="workout-prose mt-4 max-w-2xl">
                 <Content />
