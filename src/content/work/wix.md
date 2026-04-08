@@ -1,7 +1,7 @@
 ---
 company: "WIX"
 role: "Senior Technical Product Manager, Velo"
-dateStart: "01/01/2023"
+dateStart: "10/01/2023"
 dateEnd: "PRESENT"
 ---
 

@@ -1,7 +1,7 @@
 ---
 company: "ELDRITCH FOUNDRY (sold to 3dcltd)"
 role: "Founder & Chief Product Officer"
-dateStart: "01/01/2019"
+dateStart: "10/01/2023"
 dateEnd: "12/31/2023"
 ---
 

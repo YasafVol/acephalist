@@ -1,7 +1,7 @@
 ---
 company: "BANK HAPOALIM"
 role: "Product Manager, Innovation Division"
-dateStart: "01/01/2017"
+dateStart: "01/01/2018"
 dateEnd: "12/31/2019"
 ---
 
