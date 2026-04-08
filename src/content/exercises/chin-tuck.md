@@ -1,6 +1,6 @@
 ---
-title: "Chin Tuck"
-summary: "Starter notes, cues, and video slots for the chin tuck."
+title: "Chin Tucks"
+summary: "Starter notes, cues, and video slots for chin tucks."
 images: []
 keyPoints:
   - "Treat it like a controlled neck-position drill rather than a big movement."
@@ -11,8 +11,9 @@ trainingCues:
   - "Slide back gently instead of jamming down."
   - "Keep the breathing calm."
 youtubeLinks: []
-aliases: []
+aliases:
+  - "Chin Tuck"
 draft: false
 ---
 
-This page is scaffolded for **Chin Tuck**. Add posture notes, hold times, and any setup details that help the drill stay gentle and precise.
+This page is scaffolded for **Chin Tucks**. Add posture notes, hold times, and any setup details that help the drill stay gentle and precise.

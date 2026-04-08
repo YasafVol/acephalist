@@ -10,6 +10,7 @@ const plans = (await getCollection("workoutPlans"))
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
 
 const [currentPlan] = plans
+const pastPlans = plans.slice(1)
 ---
 
 <PageLayout title={WORKOUTS.TITLE} description={WORKOUTS.DESCRIPTION}>
@@ -24,37 +25,78 @@ const [currentPlan] = plans
     </div>
   </TopLayout>
   <BottomLayout>
-    <section class="animate">
-      <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
-        Current programme
-      </div>
+    <div class="space-y-12">
+      <section class="animate">
+        <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+          Current programme
+        </div>
 
-      <div class="mt-6 border-t border-black/10 dark:border-white/15">
-        <a
-          href={`/workouts/${currentPlan.slug}`}
-          class="group grid gap-4 py-6 transition-colors duration-300 ease-in-out md:grid-cols-[minmax(0,1fr)_10rem_auto] md:items-center"
-        >
-          <div>
-            <div class="text-xl font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-lime-950 dark:text-white dark:group-hover:text-lime-200">
-              {currentPlan.data.title}
+        <div class="mt-6 border-t border-black/10 dark:border-white/15">
+          <a
+            href={`/workouts/${currentPlan.slug}`}
+            class="group grid gap-4 py-6 transition-colors duration-300 ease-in-out md:grid-cols-[minmax(0,1fr)_10rem_auto] md:items-center"
+          >
+            <div>
+              <div class="text-xl font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-lime-950 dark:text-white dark:group-hover:text-lime-200">
+                {currentPlan.data.title}
+              </div>
+              <p class="mt-2 max-w-2xl text-sm leading-6 text-black/65 dark:text-white/65">
+                {currentPlan.data.summary}
+              </p>
             </div>
-            <p class="mt-2 max-w-2xl text-sm leading-6 text-black/65 dark:text-white/65">
-              {currentPlan.data.summary}
-            </p>
+
+            <div class="text-sm uppercase tracking-[0.18em] text-black/50 dark:text-white/50">
+              {formatWorkoutDate(currentPlan.data.date)}
+            </div>
+
+            <div class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-black/70 transition-colors duration-300 ease-in-out group-hover:text-black dark:text-white/70 dark:group-hover:text-white">
+              <span>View plan</span>
+              <svg class="size-4 stroke-current transition-transform duration-300 ease-in-out group-hover:translate-x-0.5">
+                <use href="/ui.svg#arrow-right" />
+              </svg>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      {pastPlans.length > 0 && (
+        <section class="animate">
+          <div class="text-sm font-semibold uppercase tracking-[0.2em] text-black/45 dark:text-white/45">
+            Past workouts
           </div>
 
-          <div class="text-sm uppercase tracking-[0.18em] text-black/50 dark:text-white/50">
-            {formatWorkoutDate(currentPlan.data.date)}
-          </div>
+          <ul class="mt-6 border-t border-black/10 dark:border-white/15">
+            {pastPlans.map((plan) => (
+              <li class="border-b border-black/10 last:border-b-0 dark:border-white/10">
+                <a
+                  href={`/workouts/${plan.slug}`}
+                  class="group grid gap-4 py-6 transition-colors duration-300 ease-in-out md:grid-cols-[minmax(0,1fr)_10rem_auto] md:items-center"
+                >
+                  <div>
+                    <div class="text-xl font-semibold text-black transition-colors duration-300 ease-in-out group-hover:text-lime-950 dark:text-white dark:group-hover:text-lime-200">
+                      {plan.data.title}
+                    </div>
+                    <p class="mt-2 max-w-2xl text-sm leading-6 text-black/65 dark:text-white/65">
+                      {plan.data.summary}
+                    </p>
+                  </div>
 
-          <div class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-black/70 transition-colors duration-300 ease-in-out group-hover:text-black dark:text-white/70 dark:group-hover:text-white">
-            <span>View plan</span>
-            <svg class="size-4 stroke-current transition-transform duration-300 ease-in-out group-hover:translate-x-0.5">
-              <use href="/ui.svg#arrow-right" />
-            </svg>
-          </div>
-        </a>
-      </div>
-    </section>
+                  <div class="text-sm uppercase tracking-[0.18em] text-black/50 dark:text-white/50">
+                    {formatWorkoutDate(plan.data.date)}
+                  </div>
+
+                  <div class="inline-flex w-fit items-center gap-2 text-sm font-semibold text-black/70 transition-colors duration-300 ease-in-out group-hover:text-black dark:text-white/70 dark:group-hover:text-white">
+                    <span>View plan</span>
+                    <svg class="size-4 stroke-current transition-transform duration-300 ease-in-out group-hover:translate-x-0.5">
+                      <use href="/ui.svg#arrow-right" />
+                    </svg>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
   </BottomLayout>
 </PageLayout>

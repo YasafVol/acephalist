@@ -267,6 +267,13 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"crunches.md": {
+	id: "crunches.md";
+  slug: "crunches";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "db-bench-press.md": {
 	id: "db-bench-press.md";
   slug: "db-bench-press";
@@ -351,6 +358,27 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"hamstring-sliders.md": {
+	id: "hamstring-sliders.md";
+  slug: "hamstring-sliders";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"hamstring-walkouts.md": {
+	id: "hamstring-walkouts.md";
+  slug: "hamstring-walkouts";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"hard-side-plank-variation.md": {
+	id: "hard-side-plank-variation.md";
+  slug: "hard-side-plank-variation";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "incline-db-bench-press.md": {
 	id: "incline-db-bench-press.md";
   slug: "incline-db-bench-press";
@@ -393,6 +421,13 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"lying-db-leg-curl.md": {
+	id: "lying-db-leg-curl.md";
+  slug: "lying-db-leg-curl";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "neck-flexion-isometric.md": {
 	id: "neck-flexion-isometric.md";
   slug: "neck-flexion-isometric";
@@ -421,6 +456,20 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"pec-stretch.md": {
+	id: "pec-stretch.md";
+  slug: "pec-stretch";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"pronation-supination.md": {
+	id: "pronation-supination.md";
+  slug: "pronation-supination";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "pull-ups.md": {
 	id: "pull-ups.md";
   slug: "pull-ups";
@@ -438,6 +487,13 @@ declare module 'astro:content' {
 "reverse-lunge.md": {
 	id: "reverse-lunge.md";
   slug: "reverse-lunge";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"scapular-retractions.md": {
+	id: "scapular-retractions.md";
+  slug: "scapular-retractions";
   body: string;
   collection: "exercises";
   data: InferEntrySchema<"exercises">
@@ -463,6 +519,20 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"suitcase-carry.md": {
+	id: "suitcase-carry.md";
+  slug: "suitcase-carry";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"suitcase-hold.md": {
+	id: "suitcase-hold.md";
+  slug: "suitcase-hold";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "sumo-deadlift.md": {
 	id: "sumo-deadlift.md";
   slug: "sumo-deadlift";
@@ -470,9 +540,23 @@ declare module 'astro:content' {
   collection: "exercises";
   data: InferEntrySchema<"exercises">
 } & { render(): Render[".md"] };
+"thoracic-rotation.md": {
+	id: "thoracic-rotation.md";
+  slug: "thoracic-rotation";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
 "walk.md": {
 	id: "walk.md";
   slug: "walk";
+  body: string;
+  collection: "exercises";
+  data: InferEntrySchema<"exercises">
+} & { render(): Render[".md"] };
+"wrist-flexor-eccentric.md": {
+	id: "wrist-flexor-eccentric.md";
+  slug: "wrist-flexor-eccentric";
   body: string;
   collection: "exercises";
   data: InferEntrySchema<"exercises">
@@ -569,6 +653,13 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "workoutPlans": {
+"april-2026-programme.md": {
+	id: "april-2026-programme.md";
+  slug: "april-2026-programme";
+  body: string;
+  collection: "workoutPlans";
+  data: InferEntrySchema<"workoutPlans">
+} & { render(): Render[".md"] };
 "foundation-split.md": {
 	id: "foundation-split.md";
   slug: "foundation-split";
