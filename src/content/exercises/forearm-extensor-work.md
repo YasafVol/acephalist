@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the tempo smooth."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Forearm Extensor Work**. Add the implement, range, and rehab-style notes that make this accessory useful.

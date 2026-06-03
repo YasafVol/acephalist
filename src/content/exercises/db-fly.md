@@ -12,7 +12,7 @@ trainingCues:
   - "Think stretch and squeeze, not speed."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **DB Fly**. Add the range-of-motion and shoulder-position notes that make this variation feel best.

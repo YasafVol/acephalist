@@ -12,7 +12,7 @@ trainingCues:
   - "Finish feeling better than when you started."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Walk**. Add duration targets, route ideas, and any recovery notes you want attached to the plan.

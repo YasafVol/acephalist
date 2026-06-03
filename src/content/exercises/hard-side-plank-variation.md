@@ -12,7 +12,7 @@ trainingCues:
   - "Breathe without letting the shape collapse."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Hard Side Plank Variation**. Add the exact version, progression, and setup you want to keep.

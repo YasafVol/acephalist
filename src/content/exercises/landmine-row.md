@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the lowering phase honest."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Landmine Row**. Add handle preference, torso angle, and loading notes that keep the movement consistent.

@@ -12,7 +12,7 @@ trainingCues:
   - "Finish tall without overextending."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Sumo Deadlift**. Add stance notes, bracing sequence, and any technical checkpoints you want to keep.

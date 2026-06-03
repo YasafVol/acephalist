@@ -12,7 +12,7 @@ trainingCues:
   - "Lower on the same path."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Drag Curl**. Add grip notes, elbow path reminders, and the cues that make the variation click.

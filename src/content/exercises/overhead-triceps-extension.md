@@ -12,7 +12,7 @@ trainingCues:
   - "Lock out smoothly instead of snapping the rep."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Overhead Triceps Extension**. Add form notes, preferred equipment, and any personal constraints worth remembering.

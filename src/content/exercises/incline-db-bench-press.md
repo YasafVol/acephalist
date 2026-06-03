@@ -12,7 +12,7 @@ trainingCues:
   - "Stay smooth through the lowering phase."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Incline DB Bench Press**. Add notes on bench angle, grip, and the cues that help you keep the movement clean.

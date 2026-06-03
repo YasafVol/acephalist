@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the shoulder quiet."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Pronation / Supination**. Add setup, loading, and progression notes here.

@@ -12,7 +12,7 @@ trainingCues:
   - "Move slow enough to keep control."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Dead Bug**. Add your favorite setup, breathing cadence, and progression path here.

@@ -12,7 +12,7 @@ trainingCues:
   - "Drive up through the front foot."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Landmine Split Squat**. Add stance, balance, and loading notes that make this variation feel best.

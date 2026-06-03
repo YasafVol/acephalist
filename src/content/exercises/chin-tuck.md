@@ -13,7 +13,7 @@ trainingCues:
 youtubeLinks: []
 aliases:
   - "Chin Tuck"
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Chin Tucks**. Add posture notes, hold times, and any setup details that help the drill stay gentle and precise.

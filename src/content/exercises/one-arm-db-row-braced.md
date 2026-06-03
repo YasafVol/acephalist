@@ -12,7 +12,7 @@ trainingCues:
   - "Lower with control instead of dropping the dumbbell."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **One-Arm DB Row, Braced**. Add support position, strap choices, and the cues that keep the row clean.

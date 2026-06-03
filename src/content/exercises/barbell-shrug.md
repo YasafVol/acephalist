@@ -12,7 +12,7 @@ trainingCues:
   - "Lower smoothly instead of dropping."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Barbell Shrug**. Add range, pause, and setup notes that help the movement stay clean.

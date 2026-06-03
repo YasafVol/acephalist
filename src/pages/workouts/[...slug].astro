@@ -25,8 +25,7 @@ type Props = {
 }
 
 const { plan } = Astro.props
-const exercises = (await getCollection("exercises"))
-  .filter((exercise) => !exercise.data.draft)
+const exercises = await getCollection("exercises")
 const exerciseMap = buildExerciseMap(exercises)
 const { Content } = await plan.render()
 

@@ -12,7 +12,7 @@ trainingCues:
   - "Push the floor away with the front leg."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Bulgarian Split Squat**. Add your stance notes, rear-foot height preference, and progression ideas here.

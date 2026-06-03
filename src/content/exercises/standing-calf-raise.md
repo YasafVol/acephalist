@@ -12,7 +12,7 @@ trainingCues:
   - "Lower under control."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Standing Calf Raise**. Add tempo, range, and setup notes that keep the reps honest.

@@ -12,7 +12,7 @@ trainingCues:
   - "Breathe without letting the hips sag."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Side Plank**. Add setup variations, breathing reminders, and progression notes here.

@@ -12,7 +12,7 @@ trainingCues:
   - "Lower slowly."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Lying DB Leg Curl**. Add setup, loading, and safety notes you want to keep.

@@ -12,7 +12,7 @@ trainingCues:
   - "Finish the rep without flaring wildly."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **French Curl**. Add details about your preferred setup, elbow position, and loading choices.

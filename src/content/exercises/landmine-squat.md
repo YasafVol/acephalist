@@ -12,7 +12,7 @@ trainingCues:
   - "Drive up through the whole foot."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Landmine Squat**. Add stance, heel support, and depth notes that make the movement consistent for you.

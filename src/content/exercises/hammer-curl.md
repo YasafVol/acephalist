@@ -12,7 +12,7 @@ trainingCues:
   - "Lower under control."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Hammer Curl**. Add loading notes, arm path reminders, and any setup details you want to keep.

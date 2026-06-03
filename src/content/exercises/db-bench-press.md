@@ -12,7 +12,7 @@ trainingCues:
   - "Stop the set when range or control changes."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **DB Bench Press**. Add your preferred setup, range-of-motion notes, and any progressions or substitutions here.

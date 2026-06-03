@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the trunk quiet while the limbs move."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Bird Dog**. Add breathing notes, tempo ideas, and setup reminders that keep the drill productive.

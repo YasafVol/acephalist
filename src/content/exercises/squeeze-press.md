@@ -12,7 +12,7 @@ trainingCues:
   - "Lower with the same pressure you use on the way up."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Squeeze Press**. Add notes on setup, tempo, and the cues that help the movement stay intentional.

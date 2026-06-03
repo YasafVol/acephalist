@@ -12,7 +12,7 @@ trainingCues:
   - "End the hold before form degrades."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Neck Flexion Isometric**. Add safety notes, effort targets, and hold-quality reminders here.

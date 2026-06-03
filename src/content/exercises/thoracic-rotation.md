@@ -12,7 +12,7 @@ trainingCues:
   - "Move slowly enough to feel the segment you want."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Thoracic Rotation**. Add setup, range, and breathing notes that make the drill useful.

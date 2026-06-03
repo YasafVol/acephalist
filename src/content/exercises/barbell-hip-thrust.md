@@ -12,7 +12,7 @@ trainingCues:
   - "Pause the top under control."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Barbell Hip Thrust**. Add setup details, rep tempo, and the cues that give you the best glute feel.

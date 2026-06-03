@@ -12,7 +12,7 @@ trainingCues:
   - "Return the dumbbells under control."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **DB Shrug**. Add grip, tempo, and loading notes here.

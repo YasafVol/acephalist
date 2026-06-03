@@ -12,7 +12,7 @@ trainingCues:
   - "Stay relaxed through the shoulder."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Wrist Flexor Eccentric**. Add rehab notes, tempo, and setup details you want to keep.

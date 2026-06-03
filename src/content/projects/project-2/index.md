@@ -2,7 +2,7 @@
 title: "KnowledgeFromYouTube, Obsidian plugin"
 summary: "Lorem ipsum dolor sit amet"
 date: "Mar 17 2022"
-draft: false
+draft: true
 tags:
 - Svelte
 - Sveltekit

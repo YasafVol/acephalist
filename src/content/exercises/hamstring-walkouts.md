@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the torso steady while the feet move."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Hamstring Walkouts**. Add setup, rep style, and progression notes here.

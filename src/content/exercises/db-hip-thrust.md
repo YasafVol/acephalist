@@ -12,7 +12,7 @@ trainingCues:
   - "Control the way down."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **DB Hip Thrust**. Add loading notes, bench setup, and any differences from your barbell variation.

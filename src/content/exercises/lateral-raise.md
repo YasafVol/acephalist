@@ -12,7 +12,7 @@ trainingCues:
   - "Lower with the same control you use to raise."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Lateral Raise**. Add setup, range, and tempo reminders that make the movement repeatable.

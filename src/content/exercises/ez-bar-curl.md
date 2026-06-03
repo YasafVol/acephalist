@@ -12,7 +12,7 @@ trainingCues:
   - "Lower slowly to keep tension."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **EZ-Bar Curl**. Add grip preference, loading notes, and the cues that keep this curl variation clean.

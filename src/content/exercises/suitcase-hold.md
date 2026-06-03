@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the breath calm and the ribs stacked."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Suitcase Hold**. Add hold setup, loading choices, and progression notes here.

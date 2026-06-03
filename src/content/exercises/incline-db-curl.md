@@ -12,7 +12,7 @@ trainingCues:
   - "Lower slowly into the stretch."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Incline DB Curl**. Add angle preference, wrist position, and tempo notes that keep the set honest.

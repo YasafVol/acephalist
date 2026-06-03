@@ -5,7 +5,7 @@ export const SITE: Site = {
   TITLE: "Acephalist",
   DESCRIPTION:
     "Welcome to Acephalist, a portfolio and blog for designers and developers.",
-  AUTHOR: "Mark Horn",
+  AUTHOR: "Yasaf Vol",
 };
 
 // Work Page

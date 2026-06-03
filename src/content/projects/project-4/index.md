@@ -2,7 +2,7 @@
 title: "Jobbery, Open Corruption"
 summary: "Lorem ipsum dolor sit amet"
 date: "Mar 15 2022"
-draft: false
+draft: true
 tags:
 - React
 - Javascript

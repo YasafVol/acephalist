@@ -12,7 +12,7 @@ trainingCues:
   - "Keep the shoulders calm while the neck works."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Neck Side Flexion Isometric**. Add side-to-side notes, setup photos, and effort guidelines here.

@@ -12,7 +12,7 @@ trainingCues:
   - "Push through the front foot to return."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Reverse Lunge**. Add stance notes, front-leg bias cues, and any progression ideas you want to track.

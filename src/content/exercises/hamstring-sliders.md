@@ -12,7 +12,7 @@ trainingCues:
   - "Pull back in without losing the hip position."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Hamstring Sliders**. Add setup notes, range limits, and progression ideas here.

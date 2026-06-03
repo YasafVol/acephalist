@@ -12,7 +12,7 @@ trainingCues:
   - "Lower under control without losing tension."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Chest-Supported DB Row**. Add your preferred bench angle, grip notes, and rep tempo reminders here.

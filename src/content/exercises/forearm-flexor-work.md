@@ -12,7 +12,7 @@ trainingCues:
   - "Use a consistent tempo."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Forearm Flexor Work**. Add variation choices, rehab notes, and the cues that make this accessory useful.

@@ -12,7 +12,7 @@ trainingCues:
   - "Press straight through without letting the elbows flare too early."
 youtubeLinks: []
 aliases: []
-draft: false
+draft: true
 ---
 
 This page is scaffolded for **Close-Grip Bench Press**. Add bar path reminders, grip notes, and any elbow-friendly adjustments you use.
