@@ -14,3 +14,13 @@ Actions:
 Follow-up:
 - Exercise pages can be populated from the SmartWorkout exercise library (`https://smartworkout.app/en/exercise-library/`) as a research source, but content should be rewritten in Acephalist's voice and not copied wholesale.
 - When an exercise page is genuinely useful, change only that page back to `draft: false` and consider making programme exercise names clickable again.
+
+## 2026-06-03: Add A Native 404 Page
+
+Decision: keep a custom `src/pages/404.astro` page so broken or intentionally hidden draft/stub routes fail gracefully.
+
+Actions:
+- Use the normal Acephalist shell and restrained page structure.
+- Mark the 404 page `noindex,nofollow`.
+- Link users back to stable surfaces: home, blog, and search.
+- Include the 404 route in `npm run audit:production-content` so it is not removed accidentally.

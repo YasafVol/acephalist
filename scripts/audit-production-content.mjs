@@ -31,6 +31,10 @@ function getFrontmatter(fileContents) {
 
 const failures = []
 
+if (!fs.existsSync(path.join(root, "src", "pages", "404.astro"))) {
+  failures.push("src/pages/404.astro is missing")
+}
+
 for (const filePath of walk(contentRoot)) {
   if (!/\.(md|mdx)$/.test(filePath)) continue
 
